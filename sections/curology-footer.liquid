@@ -1,0 +1,590 @@
+{% liquid
+  assign menu_1 = section.settings.menu_1
+  assign menu_2 = section.settings.menu_2
+  assign menu_1_heading = section.settings.menu_1_heading
+  assign menu_2_heading = section.settings.menu_2_heading
+  assign email_heading = section.settings.email_heading
+%}
+
+<footer
+  class="curology-footer"
+  style="
+    --footer-bg: {{ section.settings.background_color }};
+    --footer-heading: {{ section.settings.heading_color }};
+    --footer-text: {{ section.settings.text_color }};
+    --footer-divider: {{ section.settings.divider_color }};
+  "
+>
+  {%- comment -%} Main Content {%- endcomment -%}
+  <div class="curology-footer__main">
+    {%- comment -%} Logo {%- endcomment -%}
+    <div class="curology-footer__logo">
+      <a href="{{ routes.root_url }}" aria-label="{{ shop.name }}">
+        {{ 'logo-curology-dark-full-logo-glow-small.svg' | inline_asset_content }}
+      </a>
+    </div>
+
+    {%- comment -%} Right content area {%- endcomment -%}
+    <div class="curology-footer__content">
+      {%- comment -%} Link Lists {%- endcomment -%}
+      <div class="curology-footer__links">
+        {% if menu_1 != blank or menu_1_heading != blank %}
+          <div class="curology-footer__link-list">
+            {% if menu_1_heading != blank %}
+              <h3 class="curology-footer__heading">{{ menu_1_heading | escape }}</h3>
+            {% endif %}
+            {% if menu_1 != blank %}
+              <ul class="curology-footer__list">
+                {% for link in linklists[menu_1].links %}
+                  <li>
+                    <a href="{{ link.url }}" class="curology-footer__link">
+                      {{ link.title | escape }}
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        {% if menu_2 != blank or menu_2_heading != blank %}
+          <div class="curology-footer__link-list">
+            {% if menu_2_heading != blank %}
+              <h3 class="curology-footer__heading">{{ menu_2_heading | escape }}</h3>
+            {% endif %}
+            {% if menu_2 != blank %}
+              <ul class="curology-footer__list">
+                {% for link in linklists[menu_2].links %}
+                  <li>
+                    <a href="{{ link.url }}" class="curology-footer__link">
+                      {{ link.title | escape }}
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+
+      {%- comment -%} Email Signup + Social {%- endcomment -%}
+      <div class="curology-footer__email-social">
+        {% if email_heading != blank %}
+          <h3 class="curology-footer__heading">{{ email_heading | escape }}</h3>
+        {% endif %}
+
+        {%- comment -%} Email Form {%- endcomment -%}
+        {% form 'customer', class: 'curology-footer__form' %}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <div class="curology-footer__input-wrapper">
+            <input
+              type="email"
+              name="contact[email]"
+              class="curology-footer__input"
+              placeholder="Email address"
+              autocomplete="email"
+              aria-label="Email address"
+              required
+            >
+            <button type="submit" class="curology-footer__submit" aria-label="Subscribe">
+              {{ 'arrow-left.svg' | inline_asset_content }}
+            </button>
+          </div>
+        {% endform %}
+
+        {%- comment -%} Mobile divider {%- endcomment -%}
+        <hr class="curology-footer__divider curology-footer__divider--mobile">
+
+        {%- comment -%} Social Icons {%- endcomment -%}
+        <div class="curology-footer__social">
+          {% if section.settings.x_url != blank %}
+            <a href="{{ section.settings.x_url }}" class="curology-footer__social-link" aria-label="X" target="_blank" rel="noopener noreferrer">
+              <img src="{{ 'x.svg' | asset_url }}" alt="X" width="16" height="16" loading="lazy">
+            </a>
+          {% endif %}
+          {% if section.settings.snapchat_url != blank %}
+            <a href="{{ section.settings.snapchat_url }}" class="curology-footer__social-link" aria-label="Snapchat" target="_blank" rel="noopener noreferrer">
+              <img src="{{ 'brand-snap.svg' | asset_url }}" alt="Snapchat" width="16" height="16" loading="lazy">
+            </a>
+          {% endif %}
+          {% if section.settings.instagram_url != blank %}
+            <a href="{{ section.settings.instagram_url }}" class="curology-footer__social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+              <img src="{{ 'brand-instagram.svg' | asset_url }}" alt="Instagram" width="16" height="16" loading="lazy">
+            </a>
+          {% endif %}
+          {% if section.settings.facebook_url != blank %}
+            <a href="{{ section.settings.facebook_url }}" class="curology-footer__social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+              <img src="{{ 'brand-facebook.svg' | asset_url }}" alt="Facebook" width="16" height="16" loading="lazy">
+            </a>
+          {% endif %}
+          {% if section.settings.youtube_url != blank %}
+            <a href="{{ section.settings.youtube_url }}" class="curology-footer__social-link" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
+              <img src="{{ 'brand-youtube.svg' | asset_url }}" alt="YouTube" width="16" height="16" loading="lazy">
+            </a>
+          {% endif %}
+          {% if section.settings.pinterest_url != blank %}
+            <a href="{{ section.settings.pinterest_url }}" class="curology-footer__social-link" aria-label="Pinterest" target="_blank" rel="noopener noreferrer">
+              <img src="{{ 'brand-pinterest.svg' | asset_url }}" alt="Pinterest" width="16" height="16" loading="lazy">
+            </a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%} Mobile divider before links {%- endcomment -%}
+  <hr class="curology-footer__divider curology-footer__divider--mobile curology-footer__divider--before-links">
+
+  {%- comment -%} Mobile link lists (shown only on mobile, separate from desktop layout) {%- endcomment -%}
+  <div class="curology-footer__links-mobile">
+    {% if menu_1 != blank or menu_1_heading != blank %}
+      <div class="curology-footer__link-list">
+        {% if menu_1_heading != blank %}
+          <h3 class="curology-footer__heading">{{ menu_1_heading | escape }}</h3>
+        {% endif %}
+        {% if menu_1 != blank %}
+          <ul class="curology-footer__list">
+            {% for link in linklists[menu_1].links %}
+              <li>
+                <a href="{{ link.url }}" class="curology-footer__link">
+                  {{ link.title | escape }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if menu_2 != blank or menu_2_heading != blank %}
+      <div class="curology-footer__link-list">
+        {% if menu_2_heading != blank %}
+          <h3 class="curology-footer__heading">{{ menu_2_heading | escape }}</h3>
+        {% endif %}
+        {% if menu_2 != blank %}
+          <ul class="curology-footer__list">
+            {% for link in linklists[menu_2].links %}
+              <li>
+                <a href="{{ link.url }}" class="curology-footer__link">
+                  {{ link.title | escape }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+
+  {%- comment -%} Divider {%- endcomment -%}
+  <hr class="curology-footer__divider">
+
+  {%- comment -%} Policies {%- endcomment -%}
+  <div class="curology-footer__policies">
+    {% if section.settings.policy_column_1 != blank %}
+      <div class="curology-footer__policy-column">
+        {{ section.settings.policy_column_1 }}
+      </div>
+    {% endif %}
+    {% if section.settings.policy_column_2 != blank %}
+      <div class="curology-footer__policy-column">
+        {{ section.settings.policy_column_2 }}
+      </div>
+    {% endif %}
+    {% if section.settings.policy_column_3 != blank %}
+      <div class="curology-footer__policy-column">
+        {{ section.settings.policy_column_3 }}
+      </div>
+    {% endif %}
+  </div>
+</footer>
+
+{% stylesheet %}
+  .curology-footer {
+    background-color: var(--footer-bg, #1D1D44);
+    color: var(--footer-text, #FFFFFF);
+    padding: 40px 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+  }
+
+  /* Main content */
+  .curology-footer__main {
+    display: flex;
+    justify-content: space-between;
+    gap: 154px;
+  }
+
+  .curology-footer__logo {
+    flex-shrink: 0;
+  }
+
+  .curology-footer__logo a {
+    display: inline-flex;
+    line-height: 0;
+    text-decoration: none;
+  }
+
+  .curology-footer__logo svg {
+    height: 34px;
+    width: auto;
+    filter: drop-shadow(0 0 16px rgba(255, 255, 255, 0.5));
+  }
+
+  /* Right content */
+  .curology-footer__content {
+    display: flex;
+    gap: 32px;
+    flex: 1;
+  }
+
+  /* Link lists */
+  .curology-footer__links {
+    display: flex;
+    gap: 32px;
+  }
+
+  .curology-footer__link-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 164px;
+  }
+
+  .curology-footer__heading {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 700;
+    color: var(--footer-heading, #9F92FF);
+    margin: 0;
+  }
+
+  .curology-footer__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .curology-footer__link {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 400;
+    color: var(--footer-text, #FFFFFF);
+    text-decoration: none;
+  }
+
+  .curology-footer__link:hover {
+    text-decoration: underline;
+  }
+
+  /* Email + Social */
+  .curology-footer__email-social {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 300px;
+  }
+
+  .curology-footer__form {
+    width: 100%;
+  }
+
+  .curology-footer__input-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #FFFFFF;
+    border: 1px solid #E4E4E4;
+    border-radius: 0;
+    padding: 16px;
+    gap: 8px;
+  }
+
+  .curology-footer__input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 400;
+    color: #1D1D44;
+    padding: 0;
+  }
+
+  .curology-footer__input::placeholder {
+    color: #B9B9C5;
+  }
+
+  .curology-footer__submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+  }
+
+  .curology-footer__submit svg {
+    width: 16px;
+    height: 16px;
+    transform: rotate(180deg);
+    color: var(--footer-divider, #6554E8);
+  }
+
+  /* Social Icons */
+  .curology-footer__social {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-block-start: 4px;
+  }
+
+  .curology-footer__social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+  }
+
+  .curology-footer__social-link img {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* Divider */
+  .curology-footer__divider {
+    border: none;
+    border-top: 1px solid var(--footer-divider, #6554E8);
+    margin: 0;
+  }
+
+  .curology-footer__divider--mobile {
+    display: none;
+  }
+
+  .curology-footer__divider--before-links {
+    display: none;
+  }
+
+  /* Mobile links container */
+  .curology-footer__links-mobile {
+    display: none;
+  }
+
+  /* Policies */
+  .curology-footer__policies {
+    display: flex;
+    gap: 32px;
+  }
+
+  .curology-footer__policy-column {
+    flex: 1;
+  }
+
+  .curology-footer__policy-column p {
+    font-size: 12px;
+    line-height: 14px;
+    font-weight: 400;
+    color: var(--footer-text, #FFFFFF);
+    margin: 0 0 2px 0;
+  }
+
+  .curology-footer__policy-column p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Responsive */
+  @media screen and (max-width: 960px) {
+    .curology-footer {
+      padding: 32px 16px;
+      gap: 24px;
+    }
+
+    .curology-footer__main {
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .curology-footer__content {
+      flex-direction: column;
+    }
+
+    /* Hide desktop link lists on mobile */
+    .curology-footer__links {
+      display: none;
+    }
+
+    /* Show mobile link lists */
+    .curology-footer__links-mobile {
+      display: flex;
+      gap: 16px;
+    }
+
+    .curology-footer__link-list {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .curology-footer__email-social {
+      min-width: 0;
+      gap: 16px;
+    }
+
+    .curology-footer__divider--mobile {
+      display: block;
+    }
+
+    .curology-footer__divider--before-links {
+      display: block;
+    }
+
+    .curology-footer__policies {
+      flex-direction: column;
+      gap: 16px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:names.curology_footer",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Navigation"
+    },
+    {
+      "type": "link_list",
+      "id": "menu_1",
+      "label": "Menu 1"
+    },
+    {
+      "type": "text",
+      "id": "menu_1_heading",
+      "label": "Menu 1 heading",
+      "default": "About us"
+    },
+    {
+      "type": "link_list",
+      "id": "menu_2",
+      "label": "Menu 2"
+    },
+    {
+      "type": "text",
+      "id": "menu_2_heading",
+      "label": "Menu 2 heading",
+      "default": "Support"
+    },
+    {
+      "type": "header",
+      "content": "Email signup"
+    },
+    {
+      "type": "text",
+      "id": "email_heading",
+      "label": "Email heading",
+      "default": "Lorem ipsum dolor sit amet, consectetur"
+    },
+    {
+      "type": "header",
+      "content": "Social media"
+    },
+    {
+      "type": "text",
+      "id": "x_url",
+      "label": "X (Twitter) URL"
+    },
+    {
+      "type": "text",
+      "id": "snapchat_url",
+      "label": "Snapchat URL"
+    },
+    {
+      "type": "text",
+      "id": "instagram_url",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "text",
+      "id": "facebook_url",
+      "label": "Facebook URL"
+    },
+    {
+      "type": "text",
+      "id": "youtube_url",
+      "label": "YouTube URL"
+    },
+    {
+      "type": "text",
+      "id": "pinterest_url",
+      "label": "Pinterest URL"
+    },
+    {
+      "type": "header",
+      "content": "Policies"
+    },
+    {
+      "type": "richtext",
+      "id": "policy_column_1",
+      "label": "Policy column 1",
+      "default": "<p>All Rights Reserved 2014-2023 Curology, Inc.</p><p>Terms of Service</p><p>Privacy Notice</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "policy_column_2",
+      "label": "Policy column 2",
+      "default": "<p>Do Not Sell My Personal Information</p><p>Curology Access Program</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "policy_column_3",
+      "label": "Policy column 3",
+      "default": "<p>▵Online reviews as of 12/03/2021*</p><p>*Among 856 customers subscribed to Curology for 3+ months. Self-reported.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#1D1D44"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#9F92FF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "Divider color",
+      "default": "#6554E8"
+    }
+  ],
+  "enabled_on": {
+    "groups": ["footer"]
+  },
+  "presets": [
+    {
+      "name": "t:names.curology_footer"
+    }
+  ]
+}
+{% endschema %}
