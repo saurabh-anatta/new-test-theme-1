@@ -8,6 +8,49 @@
  * ------------------------------------------------------------
  */
 {
-  "sections": {},
-  "order": []
+  "sections": {
+    "hero-banner": {
+      "type": "curology-hero-banner",
+      "settings": {
+        "background_image": "shopify://shop_images/category-herobanner-2xl-desktop-814314862.png",
+        "heading": "Custom formulas,\nvisible results."
+      },
+      "blocks": {
+        "card-1": {
+          "type": "category-card",
+          "settings": {
+            "subtitle": "Custom FormulaRx",
+            "title": "Prevent breakouts",
+            "image": "shopify://shop_images/image-frame-desktop-I8143148621093415667.png"
+          }
+        },
+        "card-2": {
+          "type": "category-card",
+          "settings": {
+            "subtitle": "HydroTretRx",
+            "title": "Slow signs\nof aging",
+            "image": "shopify://shop_images/image-frame-desktop-I81431486211240727.png"
+          }
+        },
+        "card-3": {
+          "type": "category-card",
+          "settings": {
+            "subtitle": "Hair FormulaRx",
+            "title": "Grow hair faster",
+            "image": "shopify://shop_images/image-frame-desktop-I81431486211240729.png"
+          }
+        },
+        "card-4": {
+          "type": "category-card",
+          "settings": {
+            "subtitle": "Body CleanseRx",
+            "title": "Glow from\nhead to toe",
+            "image": "shopify://shop_images/image-frame-desktop-I81431486211240731.png"
+          }
+        }
+      },
+      "block_order": ["card-1", "card-2", "card-3", "card-4"]
+    }
+  },
+  "order": ["hero-banner"]
 }
