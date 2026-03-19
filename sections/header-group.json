@@ -57,8 +57,7 @@
             "menu": "main-menu"
           }
         }
-      },
-      "block_order": ["header-logo", "header-menu"]
+      }
     }
   },
   "order": [
