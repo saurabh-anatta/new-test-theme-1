@@ -6,30 +6,64 @@
       "type": "brand-switcher",
       "settings": {}
     },
-    "curology_announcement": {
-      "type": "curology-announcement",
+    "announcement_bar": {
+      "type": "header-announcements",
       "settings": {
-        "text": "Black Friday Sale: Get up to 50% off",
-        "cta_text": "Shop now",
-        "background_color": "#6554E8",
-        "text_color": "#FFFFFF"
-      }
+        "color_scheme": "scheme-7",
+        "section_width": "full-width",
+        "padding-block-start": 8,
+        "padding-block-end": 8,
+        "divider_width": 0
+      },
+      "blocks": {
+        "announcement_1": {
+          "type": "_announcement",
+          "settings": {
+            "text": "Black Friday Sale: Get up to 50% off <b>Shop now</b>",
+            "font": "var(--font-body--family)",
+            "font_size": "0.875rem"
+          }
+        }
+      },
+      "block_order": ["announcement_1"]
     },
-    "curology_header": {
-      "type": "curology-header",
+    "header": {
+      "type": "header",
       "settings": {
-        "menu": "main-menu",
-        "cta_text": "Find your treatment",
-        "enable_sticky": true,
-        "background_color": "#1D1D44",
-        "text_color": "#FFFFFF",
-        "cta_color": "#6554E8"
-      }
+        "logo_position": "left",
+        "menu_position": "right",
+        "menu_row": "top",
+        "show_search": false,
+        "show_country": false,
+        "show_language": false,
+        "section_width": "full-width",
+        "section_height": "standard",
+        "enable_sticky_header": "always",
+        "divider_width": 0,
+        "border_width": 0,
+        "actions_display_style": "icon",
+        "color_scheme_top": "scheme-5"
+      },
+      "blocks": {
+        "header-logo": {
+          "type": "_header-logo",
+          "static": true,
+          "settings": {}
+        },
+        "header-menu": {
+          "type": "_header-menu",
+          "static": true,
+          "settings": {
+            "menu": "main-menu"
+          }
+        }
+      },
+      "block_order": ["header-logo", "header-menu"]
     }
   },
   "order": [
     "brand_switcher",
-    "curology_announcement",
-    "curology_header"
+    "announcement_bar",
+    "header"
   ]
 }

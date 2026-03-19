@@ -2,23 +2,130 @@
   "type": "footer",
   "name": "t:names.footer",
   "sections": {
-    "curology_footer": {
-      "type": "curology-footer",
+    "footer": {
+      "type": "footer",
       "settings": {
-        "menu_1_heading": "About us",
-        "menu_2_heading": "Support",
-        "email_heading": "Lorem ipsum dolor sit amet, consectetur",
-        "background_color": "#1D1D44",
-        "heading_color": "#9F92FF",
-        "text_color": "#FFFFFF",
-        "divider_color": "#6554E8",
-        "policy_column_1": "<p>All Rights Reserved 2014-2023 Curology, Inc.<\/p><p>Terms of Service<\/p><p>Privacy Notice<\/p>",
-        "policy_column_2": "<p>Do Not Sell My Personal Information<\/p><p>Curology Access Program<\/p>",
-        "policy_column_3": "<p>▵Online reviews as of 12/03/2021*<\/p><p>*Among 856 customers subscribed to Curology for 3+ months. Self-reported.<\/p>"
-      }
+        "section_width": "page-width",
+        "gap": 32,
+        "color_scheme": "scheme-5",
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      },
+      "blocks": {
+        "footer-logo": {
+          "type": "logo",
+          "settings": {}
+        },
+        "about-links": {
+          "type": "group",
+          "settings": {
+            "content_direction": "column",
+            "gap": 12,
+            "width": "fill",
+            "inherit_color_scheme": true
+          },
+          "blocks": {
+            "about-heading": {
+              "type": "text",
+              "settings": {
+                "text": "<p>About us</p>",
+                "type_preset": "h6",
+                "width": "100%",
+                "alignment": "left"
+              }
+            },
+            "about-menu": {
+              "type": "menu",
+              "settings": {
+                "menu": "footer-about-us"
+              }
+            }
+          },
+          "block_order": ["about-heading", "about-menu"]
+        },
+        "support-links": {
+          "type": "group",
+          "settings": {
+            "content_direction": "column",
+            "gap": 12,
+            "width": "fill",
+            "inherit_color_scheme": true
+          },
+          "blocks": {
+            "support-heading": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Support</p>",
+                "type_preset": "h6",
+                "width": "100%",
+                "alignment": "left"
+              }
+            },
+            "support-menu": {
+              "type": "menu",
+              "settings": {
+                "menu": "footer-support"
+              }
+            }
+          },
+          "block_order": ["support-heading", "support-menu"]
+        },
+        "newsletter-group": {
+          "type": "group",
+          "settings": {
+            "content_direction": "column",
+            "gap": 12,
+            "width": "fill",
+            "inherit_color_scheme": true
+          },
+          "blocks": {
+            "newsletter-heading": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Lorem ipsum dolor sit amet, consectetur</p>",
+                "type_preset": "h6",
+                "width": "100%",
+                "alignment": "left"
+              }
+            },
+            "newsletter-form": {
+              "type": "email-signup",
+              "settings": {
+                "width": "fill"
+              }
+            },
+            "footer-social": {
+              "type": "social-links",
+              "settings": {}
+            }
+          },
+          "block_order": ["newsletter-heading", "newsletter-form", "footer-social"]
+        }
+      },
+      "block_order": ["footer-logo", "about-links", "support-links", "newsletter-group"]
+    },
+    "footer_utilities": {
+      "type": "footer-utilities",
+      "settings": {
+        "section_width": "page-width",
+        "gap": 24,
+        "divider_thickness": 1,
+        "color_scheme": "scheme-5",
+        "padding-block-start": 24,
+        "padding-block-end": 24
+      },
+      "blocks": {
+        "copyright": {
+          "type": "footer-copyright",
+          "settings": {}
+        },
+        "policies": {
+          "type": "footer-policy-list",
+          "settings": {}
+        }
+      },
+      "block_order": ["copyright", "policies"]
     }
   },
-  "order": [
-    "curology_footer"
-  ]
+  "order": ["footer", "footer_utilities"]
 }
