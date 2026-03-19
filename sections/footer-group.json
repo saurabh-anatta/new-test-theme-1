@@ -7,7 +7,7 @@
       "settings": {
         "section_width": "page-width",
         "gap": 32,
-        "color_scheme": "scheme-5",
+        "color_scheme": "scheme-8",
         "padding-block-start": 40,
         "padding-block-end": 40
       },
@@ -91,12 +91,20 @@
             "newsletter-form": {
               "type": "email-signup",
               "settings": {
-                "width": "fill"
+                "width": "fill",
+                "display_type": "arrow"
               }
             },
             "footer-social": {
               "type": "social-links",
-              "settings": {}
+              "settings": {
+                "twitter_url": "https://twitter.com/curology",
+                "snapchat_url": "https://snapchat.com/add/curology",
+                "instagram_url": "https://instagram.com/curology",
+                "facebook_url": "https://facebook.com/curology",
+                "youtube_url": "https://youtube.com/curology",
+                "pinterest_url": "https://pinterest.com/curology"
+              }
             }
           },
           "block_order": ["newsletter-heading", "newsletter-form", "footer-social"]
@@ -109,7 +117,7 @@
       "settings": {
         "section_width": "page-width",
         "gap": 24,
-        "divider_thickness": 1,
+        "divider_thickness": 0,
         "color_scheme": "scheme-5",
         "padding-block-start": 24,
         "padding-block-end": 24
