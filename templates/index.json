@@ -236,7 +236,41 @@
         }
       },
       "block_order": ["main_card", "product_rx", "product_otc_1", "product_otc_2", "product_otc_3"]
+    },
+    "split_hero": {
+      "type": "curology-split-hero",
+      "settings": {
+        "heading": "Tretinoin for clearer, smoother skin",
+        "image": "shopify://shop_images/image-desktop-I8262188011093415400.png",
+        "background_color": "#F1EFFF",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      },
+      "blocks": {
+        "callout_1": {
+          "type": "icon-callout",
+          "settings": {
+            "icon": "medical-history",
+            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+          }
+        },
+        "callout_2": {
+          "type": "icon-callout",
+          "settings": {
+            "icon": "mix-ingredients",
+            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+          }
+        },
+        "callout_3": {
+          "type": "icon-callout",
+          "settings": {
+            "icon": "chest",
+            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+          }
+        }
+      },
+      "block_order": ["callout_1", "callout_2", "callout_3"]
     }
   },
-  "order": ["hero_banner", "product_carousel", "product_carousel_acne"]
+  "order": ["hero_banner", "product_carousel", "product_carousel_acne", "split_hero"]
 }

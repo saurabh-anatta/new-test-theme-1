@@ -1,0 +1,267 @@
+<div
+  class="curology-split-hero"
+  style="
+    --split-hero-bg: {{ section.settings.background_color }};
+    --split-hero-padding-top: {{ section.settings.padding-block-start }}px;
+    --split-hero-padding-bottom: {{ section.settings.padding-block-end }}px;
+  "
+>
+  <div class="curology-split-hero__container">
+    <div class="curology-split-hero__image-container">
+      {% if section.settings.image != blank %}
+        <img
+          class="curology-split-hero__image"
+          src="{{ section.settings.image | image_url: width: 1280 }}"
+          alt="{{ section.settings.image.alt | escape }}"
+          loading="lazy"
+          width="640"
+          height="640"
+        >
+      {% endif %}
+    </div>
+
+    <div class="curology-split-hero__content">
+      <div class="curology-split-hero__content-inner">
+        {% if section.settings.heading != blank %}
+          <h2 class="curology-split-hero__heading">{{ section.settings.heading | escape }}</h2>
+        {% endif %}
+
+        {% if section.blocks.size > 0 %}
+          <div class="curology-split-hero__callouts">
+            {% for block in section.blocks %}
+              {% if block.type == 'icon-callout' %}
+                <div class="curology-split-hero__callout" {{ block.shopify_attributes }}>
+                  <div class="curology-split-hero__callout-icon">
+                    {% case block.settings.icon %}
+                      {% when 'medical-history' %}
+                        {{ 'medical-history.svg' | inline_asset_content }}
+                      {% when 'mix-ingredients' %}
+                        {{ 'mix-ingredients.svg' | inline_asset_content }}
+                      {% when 'chest' %}
+                        {{ 'chest.svg' | inline_asset_content }}
+                    {% endcase %}
+                  </div>
+                  {% if block.settings.text != blank %}
+                    <p class="curology-split-hero__callout-text">{{ block.settings.text | escape }}</p>
+                  {% endif %}
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .curology-split-hero {
+    background-color: var(--split-hero-bg, #F1EFFF);
+    padding-block-start: var(--split-hero-padding-top, 0px);
+    padding-block-end: var(--split-hero-padding-bottom, 0px);
+  }
+
+  .curology-split-hero__container {
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .curology-split-hero__image-container {
+    width: 50%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 64px;
+  }
+
+  .curology-split-hero__image {
+    width: 100%;
+    max-width: 640px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+  }
+
+  .curology-split-hero__content {
+    width: 50%;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-inline: 64px;
+    min-height: 768px;
+  }
+
+  .curology-split-hero__content-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 640px;
+  }
+
+  .curology-split-hero__heading {
+    font-family: var(--font-heading--family), sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 48px;
+    color: #1D1D44;
+    margin: 0;
+    letter-spacing: 0;
+  }
+
+  .curology-split-hero__callouts {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .curology-split-hero__callout {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .curology-split-hero__callout-icon {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .curology-split-hero__callout-icon svg {
+    width: 40px;
+    height: 40px;
+    display: block;
+    fill: #1D1D44;
+  }
+
+  .curology-split-hero__callout-text {
+    font-family: var(--font-body--family), sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    color: #1D1D44;
+    margin: 0;
+    letter-spacing: 0;
+  }
+
+  @media screen and (max-width: 960px) {
+    .curology-split-hero__container {
+      flex-direction: column;
+    }
+
+    .curology-split-hero__image-container {
+      width: 100%;
+      padding: 32px 24px;
+    }
+
+    .curology-split-hero__content {
+      width: 100%;
+      padding: 0 24px 32px 24px;
+      min-height: auto;
+    }
+
+    .curology-split-hero__heading {
+      font-size: 32px;
+      line-height: 40px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .curology-split-hero *,
+    .curology-split-hero *::before,
+    .curology-split-hero *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:names.curology_split_hero",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Tretinoin for clearer, smoother skin"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#F1EFFF"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 0,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "icon-callout",
+      "name": "Icon Callout",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "medical-history", "label": "Medical History" },
+            { "value": "mix-ingredients", "label": "Mix Ingredients" },
+            { "value": "chest", "label": "Chest" }
+          ],
+          "default": "medical-history"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "t:names.curology_split_hero"
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  }
+}
+{% endschema %}
