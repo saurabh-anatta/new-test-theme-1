@@ -271,6 +271,68 @@
       },
       "block_order": ["callout_1", "callout_2", "callout_3"]
     },
+    "ingredients": {
+      "type": "curology-ingredients",
+      "settings": {
+        "background_color": "#F1EFFF",
+        "subtitle": "Our ingredients",
+        "heading": "Powerful, science-backed \ningredients that are proven to work",
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      },
+      "blocks": {
+        "card_ni": {
+          "type": "ingredient-card",
+          "settings": {
+            "image": "shopify://shop_images/rectangle-30-desktop-I781577151093414661.png",
+            "abbreviation": "Ni",
+            "name": "Niacinamide",
+            "description": "A form of vitamin B3 that soothes inflammation, helps visibly fade dark spots, and fights free radicals",
+            "highlight_1_icon": "acne",
+            "highlight_1_text": "Acne",
+            "highlight_2_icon": "clogged-pores",
+            "highlight_2_text": "Clogged pores",
+            "highlight_3_icon": "texture",
+            "highlight_3_text": "Skin texture",
+            "highlight_4_icon": "rosacea",
+            "highlight_4_text": "Rosacea"
+          }
+        },
+        "card_az": {
+          "type": "ingredient-card",
+          "settings": {
+            "image": "shopify://shop_images/rectangle-30-desktop-I781577151093414719.png",
+            "abbreviation": "Az",
+            "name": "Azelaic Acid"
+          }
+        },
+        "card_cl": {
+          "type": "ingredient-card",
+          "settings": {
+            "image": "shopify://shop_images/rectangle-30-desktop-I781577151093414728.png",
+            "abbreviation": "Cl",
+            "name": "Clindamycin"
+          }
+        },
+        "card_tr": {
+          "type": "ingredient-card",
+          "settings": {
+            "image": "shopify://shop_images/rectangle-30-desktop-I781577151093414737.png",
+            "abbreviation": "Tr",
+            "name": "Tretinoin"
+          }
+        },
+        "card_tra": {
+          "type": "ingredient-card",
+          "settings": {
+            "image": "shopify://shop_images/image-278-desktop-I781577151093414746.png",
+            "abbreviation": "Tr A",
+            "name": "Tranexamic acid"
+          }
+        }
+      },
+      "block_order": ["card_ni", "card_az", "card_cl", "card_tr", "card_tra"]
+    },
     "content_carousel": {
       "type": "curology-content-carousel",
       "settings": {
@@ -336,5 +398,5 @@
       "block_order": ["card_1", "card_2", "card_3", "card_4", "card_5"]
     }
   },
-  "order": ["hero_banner", "product_carousel", "product_carousel_acne", "split_hero", "content_carousel"]
+  "order": ["hero_banner", "product_carousel", "product_carousel_acne", "split_hero", "ingredients", "content_carousel"]
 }

@@ -1,0 +1,623 @@
+<curology-ingredients
+  class="curology-ingredients"
+  style="
+    --ingredients-bg: {{ section.settings.background_color }};
+    --ingredients-padding-top: {{ section.settings.padding-block-start }}px;
+    --ingredients-padding-bottom: {{ section.settings.padding-block-end }}px;
+  "
+>
+  <svg class="curology-ingredients__wave" viewBox="0 0 1536 41" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M0 25C100 5 180 0 270 12C360 24 430 40 530 38C630 36 710 10 810 5C910 0 990 15 1090 25C1190 35 1270 40 1370 32C1440 26 1500 10 1536 18V41H0V25Z" fill="#BDB4FF"/>
+  </svg>
+
+  <div class="curology-ingredients__container">
+    <div class="curology-ingredients__heading-area">
+      {% if section.settings.subtitle != blank %}
+        <p class="curology-ingredients__subtitle">{{ section.settings.subtitle | escape }}</p>
+      {% endif %}
+      {% if section.settings.heading != blank %}
+        <h2 class="curology-ingredients__heading">{{ section.settings.heading | escape }}</h2>
+      {% endif %}
+    </div>
+
+    <div class="curology-ingredients__carousel">
+      <div class="curology-ingredients__track">
+        {% for block in section.blocks %}
+          {% if block.type == 'ingredient-card' %}
+            <div class="curology-ingredients__card" {{ block.shopify_attributes }}>
+              {% if block.settings.image != blank %}
+                <img
+                  class="curology-ingredients__card-image"
+                  src="{{ block.settings.image | image_url: width: 656 }}"
+                  alt="{{ block.settings.name | escape }}"
+                  loading="lazy"
+                  width="328"
+                  height="328"
+                >
+              {% endif %}
+              <div class="curology-ingredients__card-body">
+                <button
+                  type="button"
+                  class="curology-ingredients__toggle"
+                  data-card-toggle
+                  aria-label="Toggle details"
+                >
+                  <span class="curology-ingredients__toggle-add">{{ 'icons-add.svg' | inline_asset_content }}</span>
+                  <span class="curology-ingredients__toggle-remove">{{ 'icons-remove.svg' | inline_asset_content }}</span>
+                </button>
+                {% if block.settings.abbreviation != blank %}
+                  <span class="curology-ingredients__card-abbreviation">{{ block.settings.abbreviation | escape }}</span>
+                {% endif %}
+                {% if block.settings.name != blank %}
+                  <span class="curology-ingredients__card-name">{{ block.settings.name | escape }}</span>
+                {% endif %}
+                <div class="curology-ingredients__card-expandable">
+                  {% if block.settings.description != blank %}
+                    <p class="curology-ingredients__card-description">{{ block.settings.description | escape }}</p>
+                  {% endif %}
+                  {% liquid
+                    assign has_highlights = false
+                    if block.settings.highlight_1_icon != 'none' and block.settings.highlight_1_text != blank
+                      assign has_highlights = true
+                    elsif block.settings.highlight_2_icon != 'none' and block.settings.highlight_2_text != blank
+                      assign has_highlights = true
+                    elsif block.settings.highlight_3_icon != 'none' and block.settings.highlight_3_text != blank
+                      assign has_highlights = true
+                    elsif block.settings.highlight_4_icon != 'none' and block.settings.highlight_4_text != blank
+                      assign has_highlights = true
+                    endif
+                  %}
+                  {% if has_highlights %}
+                    <div class="curology-ingredients__card-highlights">
+                      {% for i in (1..4) %}
+                        {% liquid
+                          assign icon_key = 'highlight_' | append: i | append: '_icon'
+                          assign text_key = 'highlight_' | append: i | append: '_text'
+                          assign icon_val = block.settings[icon_key]
+                          assign text_val = block.settings[text_key]
+                        %}
+                        {% if icon_val != 'none' and text_val != blank %}
+                          <div class="curology-ingredients__highlight">
+                            <span class="curology-ingredients__highlight-icon">
+                              {% case icon_val %}
+                                {% when 'acne' %}
+                                  {{ 'acne-7.svg' | inline_asset_content }}
+                                {% when 'clogged-pores' %}
+                                  {{ 'clogged-pores.svg' | inline_asset_content }}
+                                {% when 'texture' %}
+                                  {{ 'texture.svg' | inline_asset_content }}
+                                {% when 'rosacea' %}
+                                  {{ 'rosacea.svg' | inline_asset_content }}
+                              {% endcase %}
+                            </span>
+                            <span class="curology-ingredients__highlight-text">{{ text_val | escape }}</span>
+                          </div>
+                        {% endif %}
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      <div class="curology-ingredients__arrows-wrapper">
+        <div class="curology-ingredients__arrows">
+          <button
+            type="button"
+            class="curology-ingredients__arrow"
+            data-carousel-prev
+            aria-label="Previous slide"
+            style="opacity: 0.6;"
+          >
+            {{ 'arrow-left.svg' | inline_asset_content }}
+          </button>
+          <button
+            type="button"
+            class="curology-ingredients__arrow"
+            data-carousel-next
+            aria-label="Next slide"
+          >
+            {{ 'arrow-right.svg' | inline_asset_content }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</curology-ingredients>
+
+<script src="{{ 'curology-ingredients.js' | asset_url }}" type="module"></script>
+
+{% stylesheet %}
+  .curology-ingredients {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--ingredients-bg, #F1EFFF);
+    padding: var(--ingredients-padding-top, 64px) 64px var(--ingredients-padding-bottom, 64px) 64px;
+    position: relative;
+  }
+
+  .curology-ingredients__wave {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 41px;
+    display: block;
+  }
+
+  .curology-ingredients__container {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1408px;
+  }
+
+  .curology-ingredients__heading-area {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+  }
+
+  .curology-ingredients__subtitle {
+    font-family: var(--font-accent--family), monospace;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    color: #1D1D44;
+    margin: 0;
+    letter-spacing: 0;
+  }
+
+  .curology-ingredients__heading {
+    font-family: var(--font-heading--family), sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 48px;
+    color: #1D1D44;
+    margin: 0;
+    letter-spacing: 0;
+  }
+
+  .curology-ingredients__carousel {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    width: 100%;
+  }
+
+  .curology-ingredients__track {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    padding-inline-end: 32px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .curology-ingredients__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .curology-ingredients__card {
+    position: relative;
+    flex-shrink: 0;
+    width: 328px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .curology-ingredients__card-image {
+    width: 328px;
+    height: 328px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+    display: block;
+  }
+
+  .curology-ingredients__card-body {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 24px;
+    background-color: #BDB4FF;
+    border-radius: 0 0 8px 8px;
+  }
+
+  .curology-ingredients__card.expanded .curology-ingredients__card-body {
+    position: absolute;
+    top: 328px;
+    left: 0;
+    right: 0;
+    gap: 16px;
+    z-index: 2;
+    box-shadow: 0 -2px 8px rgba(29, 29, 68, 0.1);
+  }
+
+  .curology-ingredients__toggle {
+    position: absolute;
+    bottom: 24px;
+    right: 24px;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: #1D1D44;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    transform: rotate(-1.6deg);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    z-index: 3;
+    color: #FFFFFF;
+  }
+
+  .curology-ingredients__toggle:focus-visible {
+    outline: 2px solid #1D1D44;
+    outline-offset: 2px;
+  }
+
+  .curology-ingredients__toggle svg {
+    width: 24px;
+    height: 24px;
+    display: block;
+  }
+
+  .curology-ingredients__toggle-add {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .curology-ingredients__toggle-remove {
+    display: none;
+  }
+
+  .curology-ingredients__card.expanded .curology-ingredients__toggle-add {
+    display: none;
+  }
+
+  .curology-ingredients__card.expanded .curology-ingredients__toggle-remove {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .curology-ingredients__card-abbreviation {
+    font-family: var(--font-heading--family), sans-serif;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 56px;
+    color: #1D1D44;
+    letter-spacing: 0;
+  }
+
+  .curology-ingredients__card-name {
+    font-family: var(--font-heading--family), sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    color: #1D1D44;
+    letter-spacing: 0;
+  }
+
+  .curology-ingredients__card-expandable {
+    display: none;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .curology-ingredients__card.expanded .curology-ingredients__card-expandable {
+    display: flex;
+  }
+
+  .curology-ingredients__card-description {
+    font-family: var(--font-body--family), sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    color: #1D1D44;
+    margin: 0;
+    letter-spacing: 0;
+  }
+
+  .curology-ingredients__card-highlights {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .curology-ingredients__highlight {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    align-items: center;
+  }
+
+  .curology-ingredients__highlight-icon {
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .curology-ingredients__highlight-icon svg {
+    width: 16px;
+    height: 16px;
+    display: block;
+  }
+
+  .curology-ingredients__highlight-text {
+    font-family: var(--font-heading--family), sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 14px;
+    color: #1D1D44;
+    letter-spacing: 0;
+  }
+
+  .curology-ingredients__arrows-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+  }
+
+  .curology-ingredients__arrows {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .curology-ingredients__arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    padding: 8px;
+    background-color: #FFFFFF;
+    border: 1px solid #1D1D44;
+    cursor: pointer;
+    transform: rotate(3.1deg);
+  }
+
+  .curology-ingredients__arrow svg {
+    width: 16px;
+    height: 16px;
+    display: block;
+  }
+
+  .curology-ingredients__arrow:focus-visible {
+    outline: 2px solid #1D1D44;
+    outline-offset: 2px;
+  }
+
+  @media screen and (max-width: 960px) {
+    .curology-ingredients {
+      padding: 32px 24px;
+    }
+
+    .curology-ingredients__container {
+      gap: 24px;
+    }
+
+    .curology-ingredients__heading {
+      font-size: 28px;
+      line-height: 36px;
+    }
+
+    .curology-ingredients__track {
+      gap: 16px;
+      scroll-snap-type: x mandatory;
+      padding-inline-end: 16px;
+    }
+
+    .curology-ingredients__card {
+      width: 260px;
+      scroll-snap-align: start;
+    }
+
+    .curology-ingredients__card-image {
+      width: 260px;
+      height: 260px;
+    }
+
+    .curology-ingredients__card.expanded .curology-ingredients__card-body {
+      top: 260px;
+    }
+
+    .curology-ingredients__arrows {
+      display: none;
+    }
+
+    .curology-ingredients__carousel {
+      gap: 24px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .curology-ingredients__track {
+      scroll-behavior: auto;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:names.curology_ingredients",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#F1EFFF"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Our ingredients"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Powerful, science-backed ingredients that are proven to work"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 64,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 64,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "ingredient-card",
+      "name": "Ingredient Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "abbreviation",
+          "label": "Abbreviation",
+          "default": "Ni"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name",
+          "default": "Niacinamide"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "A form of vitamin B3 that soothes inflammation, helps visibly fade dark spots, and fights free radicals"
+        },
+        {
+          "type": "select",
+          "id": "highlight_1_icon",
+          "label": "Highlight 1 icon",
+          "default": "none",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "acne", "label": "Acne" },
+            { "value": "clogged-pores", "label": "Clogged pores" },
+            { "value": "texture", "label": "Skin texture" },
+            { "value": "rosacea", "label": "Rosacea" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "highlight_1_text",
+          "label": "Highlight 1 text"
+        },
+        {
+          "type": "select",
+          "id": "highlight_2_icon",
+          "label": "Highlight 2 icon",
+          "default": "none",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "acne", "label": "Acne" },
+            { "value": "clogged-pores", "label": "Clogged pores" },
+            { "value": "texture", "label": "Skin texture" },
+            { "value": "rosacea", "label": "Rosacea" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "highlight_2_text",
+          "label": "Highlight 2 text"
+        },
+        {
+          "type": "select",
+          "id": "highlight_3_icon",
+          "label": "Highlight 3 icon",
+          "default": "none",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "acne", "label": "Acne" },
+            { "value": "clogged-pores", "label": "Clogged pores" },
+            { "value": "texture", "label": "Skin texture" },
+            { "value": "rosacea", "label": "Rosacea" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "highlight_3_text",
+          "label": "Highlight 3 text"
+        },
+        {
+          "type": "select",
+          "id": "highlight_4_icon",
+          "label": "Highlight 4 icon",
+          "default": "none",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "acne", "label": "Acne" },
+            { "value": "clogged-pores", "label": "Clogged pores" },
+            { "value": "texture", "label": "Skin texture" },
+            { "value": "rosacea", "label": "Rosacea" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "highlight_4_text",
+          "label": "Highlight 4 text"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "t:names.curology_ingredients"
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  }
+}
+{% endschema %}
