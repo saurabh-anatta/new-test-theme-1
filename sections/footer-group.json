@@ -2,138 +2,22 @@
   "type": "footer",
   "name": "t:names.footer",
   "sections": {
-    "footer": {
-      "type": "footer",
+    "curology_footer": {
+      "type": "curology-footer",
       "settings": {
-        "section_width": "page-width",
-        "gap": 32,
-        "color_scheme": "scheme-8",
-        "padding-block-start": 40,
-        "padding-block-end": 40
-      },
-      "blocks": {
-        "footer-logo": {
-          "type": "logo",
-          "settings": {}
-        },
-        "about-links": {
-          "type": "group",
-          "settings": {
-            "content_direction": "column",
-            "gap": 12,
-            "width": "fill",
-            "inherit_color_scheme": true
-          },
-          "blocks": {
-            "about-heading": {
-              "type": "text",
-              "settings": {
-                "text": "<p>About us</p>",
-                "type_preset": "h6",
-                "width": "100%",
-                "alignment": "left"
-              }
-            },
-            "about-menu": {
-              "type": "menu",
-              "settings": {
-                "menu": "footer-about-us"
-              }
-            }
-          },
-          "block_order": ["about-heading", "about-menu"]
-        },
-        "support-links": {
-          "type": "group",
-          "settings": {
-            "content_direction": "column",
-            "gap": 12,
-            "width": "fill",
-            "inherit_color_scheme": true
-          },
-          "blocks": {
-            "support-heading": {
-              "type": "text",
-              "settings": {
-                "text": "<p>Support</p>",
-                "type_preset": "h6",
-                "width": "100%",
-                "alignment": "left"
-              }
-            },
-            "support-menu": {
-              "type": "menu",
-              "settings": {
-                "menu": "footer-support"
-              }
-            }
-          },
-          "block_order": ["support-heading", "support-menu"]
-        },
-        "newsletter-group": {
-          "type": "group",
-          "settings": {
-            "content_direction": "column",
-            "gap": 12,
-            "width": "fill",
-            "inherit_color_scheme": true
-          },
-          "blocks": {
-            "newsletter-heading": {
-              "type": "text",
-              "settings": {
-                "text": "<p>Lorem ipsum dolor sit amet, consectetur</p>",
-                "type_preset": "h6",
-                "width": "100%",
-                "alignment": "left"
-              }
-            },
-            "newsletter-form": {
-              "type": "email-signup",
-              "settings": {
-                "width": "fill",
-                "display_type": "arrow"
-              }
-            },
-            "footer-social": {
-              "type": "social-links",
-              "settings": {
-                "twitter_url": "https://twitter.com/curology",
-                "snapchat_url": "https://snapchat.com/add/curology",
-                "instagram_url": "https://instagram.com/curology",
-                "facebook_url": "https://facebook.com/curology",
-                "youtube_url": "https://youtube.com/curology",
-                "pinterest_url": "https://pinterest.com/curology"
-              }
-            }
-          },
-          "block_order": ["newsletter-heading", "newsletter-form", "footer-social"]
-        }
-      },
-      "block_order": ["footer-logo", "about-links", "support-links", "newsletter-group"]
-    },
-    "footer_utilities": {
-      "type": "footer-utilities",
-      "settings": {
-        "section_width": "page-width",
-        "gap": 24,
-        "divider_thickness": 0,
-        "color_scheme": "scheme-5",
-        "padding-block-start": 24,
-        "padding-block-end": 24
-      },
-      "blocks": {
-        "copyright": {
-          "type": "footer-copyright",
-          "settings": {}
-        },
-        "policies": {
-          "type": "footer-policy-list",
-          "settings": {}
-        }
-      },
-      "block_order": ["copyright", "policies"]
+        "menu_1": "footer-about-us",
+        "menu_1_heading": "About us",
+        "menu_2": "footer-support",
+        "menu_2_heading": "Support",
+        "email_heading": "Lorem ipsum dolor sit amet, consectetur",
+        "x_url": "https://twitter.com/curology",
+        "snapchat_url": "https://snapchat.com/add/curology",
+        "instagram_url": "https://instagram.com/curology",
+        "facebook_url": "https://facebook.com/curology",
+        "youtube_url": "https://youtube.com/curology",
+        "pinterest_url": "https://pinterest.com/curology"
+      }
     }
   },
-  "order": ["footer", "footer_utilities"]
+  "order": ["curology_footer"]
 }
