@@ -658,7 +658,55 @@
         }
       },
       "block_order": ["usp_1", "usp_2", "usp_3", "usp_4", "usp_5"]
+    },
+    "media_mentions": {
+      "type": "curology-media-mentions",
+      "settings": {
+        "title": "In the press",
+        "background_color": "#F1EFFF",
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      },
+      "blocks": {
+        "logo_1": {
+          "type": "logo-item",
+          "settings": {
+            "image": "shopify://shop_images/image-284-desktop-I8282106671093413886.png"
+          }
+        },
+        "logo_2": {
+          "type": "logo-item",
+          "settings": {
+            "image": "shopify://shop_images/image-291-desktop-I8282106671093413890.png"
+          }
+        },
+        "logo_3": {
+          "type": "logo-item",
+          "settings": {
+            "image": "shopify://shop_images/image-291-desktop-I8282106671093413894.png"
+          }
+        },
+        "logo_4": {
+          "type": "logo-item",
+          "settings": {
+            "image": "shopify://shop_images/image-285-desktop-I8282106671093413898.png"
+          }
+        },
+        "logo_5": {
+          "type": "logo-item",
+          "settings": {
+            "image": "shopify://shop_images/image-286-desktop-I8282106671093413902.png"
+          }
+        },
+        "logo_6": {
+          "type": "logo-item",
+          "settings": {
+            "image": "shopify://shop_images/image-287-desktop-I8282106671093413906.png"
+          }
+        }
+      },
+      "block_order": ["logo_1", "logo_2", "logo_3", "logo_4", "logo_5", "logo_6"]
     }
   },
-  "order": ["hero_banner", "product_carousel", "product_carousel_acne", "split_hero", "testimonials", "ingredients", "content_carousel", "how_it_works", "usp"]
+  "order": ["hero_banner", "product_carousel", "product_carousel_acne", "split_hero", "testimonials", "ingredients", "content_carousel", "how_it_works", "usp", "media_mentions"]
 }

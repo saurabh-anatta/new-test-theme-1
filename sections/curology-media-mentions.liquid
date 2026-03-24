@@ -1,0 +1,189 @@
+<div
+  class="curology-media-mentions"
+  style="
+    --media-mentions-bg: {{ section.settings.background_color }};
+    --media-mentions-padding-top: {{ section.settings.padding-block-start }}px;
+    --media-mentions-padding-bottom: {{ section.settings.padding-block-end }}px;
+  "
+>
+  <div class="curology-media-mentions__container">
+    {% if section.settings.title != blank %}
+      <p class="curology-media-mentions__title">{{ section.settings.title | escape }}</p>
+    {% endif %}
+
+    <div class="curology-media-mentions__content">
+      <div class="curology-media-mentions__logos">
+        {% for block in section.blocks %}
+          {% if block.type == 'logo-item' %}
+            <div class="curology-media-mentions__logo-item" {{ block.shopify_attributes }}>
+              {% if block.settings.image != blank %}
+                <img
+                  src="{{ block.settings.image | image_url: width: 320 }}"
+                  alt="{{ block.settings.image.alt | escape }}"
+                  width="160"
+                  height="64"
+                  loading="lazy"
+                  class="curology-media-mentions__logo-image"
+                >
+              {% endif %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .curology-media-mentions {
+    background-color: var(--media-mentions-bg, #F1EFFF);
+    padding-block-start: var(--media-mentions-padding-top, 64px);
+    padding-block-end: var(--media-mentions-padding-bottom, 64px);
+    overflow: hidden;
+  }
+
+  .curology-media-mentions__container {
+    max-width: 1408px;
+    margin: 0 auto;
+    padding: 0 64px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .curology-media-mentions__title {
+    font-family: var(--font-accent--family), monospace;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    color: #1D1D44;
+    text-align: center;
+    margin: 0;
+    letter-spacing: 0;
+  }
+
+  .curology-media-mentions__content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .curology-media-mentions__logos {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .curology-media-mentions__logo-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 160px;
+    height: 64px;
+    flex-shrink: 0;
+  }
+
+  .curology-media-mentions__logo-image {
+    display: block;
+    width: 160px;
+    height: 64px;
+    object-fit: contain;
+  }
+
+  @media screen and (max-width: 960px) {
+    .curology-media-mentions__container {
+      padding: 0 24px;
+    }
+
+    .curology-media-mentions__logos {
+      gap: 16px;
+    }
+
+    .curology-media-mentions__logo-item {
+      width: 120px;
+      height: 48px;
+    }
+
+    .curology-media-mentions__logo-image {
+      width: 120px;
+      height: 48px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .curology-media-mentions *,
+    .curology-media-mentions *::before,
+    .curology-media-mentions *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:names.curology_media_mentions",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#F1EFFF"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "In the press"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 64,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 64,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo-item",
+      "name": "Logo Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Logo image"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "t:names.curology_media_mentions"
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  }
+}
+{% endschema %}
