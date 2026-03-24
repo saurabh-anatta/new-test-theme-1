@@ -1,0 +1,27 @@
+{% comment %}
+  Custom font declarations for the brand's 'Skintype Text' font family.
+
+  IMPORTANT: The actual font files must be uploaded to the theme's assets/ directory:
+    - assets/skintype-text-regular.woff2 (weight 400)
+    - assets/skintype-text-bold.woff2 (weight 700)
+
+  Without these files, the theme will gracefully fall back to the font_picker fonts (Inter)
+  configured in the theme settings.
+{% endcomment %}
+<style>
+  @font-face {
+    font-family: 'Skintype Text';
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+    src: url({{ 'skintype-text-regular.woff2' | asset_url }}) format('woff2');
+  }
+
+  @font-face {
+    font-family: 'Skintype Text';
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+    src: url({{ 'skintype-text-bold.woff2' | asset_url }}) format('woff2');
+  }
+</style>
