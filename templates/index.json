@@ -397,6 +397,53 @@
       },
       "block_order": ["card_1", "card_2", "card_3", "card_4", "card_5"]
     },
+    "how_it_works": {
+      "type": "curology-how-it-works",
+      "settings": {
+        "background_color": "#BDB4FF",
+        "title": "How it works",
+        "heading": "Better skin in just four simple steps",
+        "button_text": "Get started",
+        "disclaimer": "Subject to consultation. Cancel anytime.",
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      },
+      "blocks": {
+        "step_1": {
+          "type": "step-card",
+          "settings": {
+            "icon": "face",
+            "title": "Tell us about you",
+            "description": "Share your history, lifestyle, and skin goals. Upload photos for expert review & progress tracking."
+          }
+        },
+        "step_2": {
+          "type": "step-card",
+          "settings": {
+            "icon": "message",
+            "title": "Connect with your provider",
+            "description": "A dermatology provider reviews your skin and creates your treatment plan."
+          }
+        },
+        "step_3": {
+          "type": "step-card",
+          "settings": {
+            "icon": "c-m",
+            "title": "We customize your plan",
+            "description": "Your provider prescribes a personalized formula with three clinically proven ingredients for better results."
+          }
+        },
+        "step_4": {
+          "type": "step-card",
+          "settings": {
+            "icon": "formula-change",
+            "title": "Receive your skincare",
+            "description": "After your provider prescribes your formula and plan, your products ship every 2 months."
+          }
+        }
+      },
+      "block_order": ["step_1", "step_2", "step_3", "step_4"]
+    },
     "usp": {
       "type": "curology-usp",
       "settings": {
@@ -444,5 +491,5 @@
       "block_order": ["usp_1", "usp_2", "usp_3", "usp_4", "usp_5"]
     }
   },
-  "order": ["hero_banner", "product_carousel", "product_carousel_acne", "split_hero", "ingredients", "content_carousel", "usp"]
+  "order": ["hero_banner", "product_carousel", "product_carousel_acne", "split_hero", "ingredients", "content_carousel", "how_it_works", "usp"]
 }
