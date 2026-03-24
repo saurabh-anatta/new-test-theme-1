@@ -146,7 +146,97 @@
         }
       },
       "block_order": ["product_1", "product_2", "product_3", "product_4", "main_card"]
+    },
+    "product_carousel_acne": {
+      "type": "curology-product-carousel",
+      "settings": {
+        "background_color": "#F1EFFF",
+        "padding-block-start": 64,
+        "padding-block-end": 0
+      },
+      "blocks": {
+        "main_card": {
+          "type": "main-card",
+          "settings": {
+            "badge_text": "Acne control",
+            "heading": "Shop our skin clearing acne products",
+            "background_image": "shopify://shop_images/main-card-desktop-1086924529.jpg"
+          }
+        },
+        "product_rx": {
+          "type": "product-card",
+          "settings": {
+            "image": "shopify://shop_images/image-desktop-1086924913.jpg",
+            "badge_dark_text": "Rx",
+            "badge_light_text": "Best seller",
+            "award_badge": "shopify://shop_images/landingpageseal-1-desktop-1086924918.png",
+            "title": "Custom Formula",
+            "description": "Daily acne clearing treatment",
+            "show_rating": true,
+            "rating_text": "4.8 (535)",
+            "original_price": "$34.95",
+            "button_text": "Start skin quiz",
+            "button_style": "primary"
+          }
+        },
+        "product_otc_1": {
+          "type": "product-card",
+          "settings": {
+            "image": "shopify://shop_images/image-desktop-1086924945.jpg",
+            "title": "Gentle Cleanser",
+            "description": "Lightly foaming face wash",
+            "show_rating": true,
+            "rating_text": "4.8 (535)",
+            "original_price": "$16",
+            "sale_price": "$15",
+            "size_text": "100 ml",
+            "sale_label": "70% off",
+            "variant_1": "Standard",
+            "variant_2": "Mini",
+            "button_text": "Add to cart",
+            "button_style": "dark"
+          }
+        },
+        "product_otc_2": {
+          "type": "product-card",
+          "settings": {
+            "image": "shopify://shop_images/image-desktop-1086924838.jpg",
+            "title": "Gentle Cleanser",
+            "description": "Lightly foaming face wash",
+            "show_rating": true,
+            "rating_text": "4.8 (535)",
+            "original_price": "$16",
+            "sale_price": "$15",
+            "size_text": "100 ml",
+            "sale_label": "70% off",
+            "variant_1": "Standard",
+            "variant_2": "Mini",
+            "button_text": "Add to cart",
+            "button_style": "dark"
+          }
+        },
+        "product_otc_3": {
+          "type": "product-card",
+          "settings": {
+            "image": "shopify://shop_images/image-desktop-1086924873.jpg",
+            "award_badge": "shopify://shop_images/landingpageseal-1-desktop-1086924876.png",
+            "title": "Gentle Cleanser",
+            "description": "Lightly foaming face wash",
+            "show_rating": true,
+            "rating_text": "4.8 (535)",
+            "original_price": "$16",
+            "sale_price": "$15",
+            "size_text": "100 ml",
+            "sale_label": "70% off",
+            "variant_1": "Standard",
+            "variant_2": "Mini",
+            "button_text": "Add to cart",
+            "button_style": "dark"
+          }
+        }
+      },
+      "block_order": ["main_card", "product_rx", "product_otc_1", "product_otc_2", "product_otc_3"]
     }
   },
-  "order": ["hero_banner", "product_carousel"]
+  "order": ["hero_banner", "product_carousel", "product_carousel_acne"]
 }
