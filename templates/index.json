@@ -270,7 +270,71 @@
         }
       },
       "block_order": ["callout_1", "callout_2", "callout_3"]
+    },
+    "content_carousel": {
+      "type": "curology-content-carousel",
+      "settings": {
+        "background_color": "#BDB4FF",
+        "subtitle": "Meet our providers",
+        "heading": "Dermatologist founded, tested &\ndeveloped",
+        "description": "We're powered by 100+ in-house licensed dermatology providers. Our derms have 1,700 interactions every day with our customers.",
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      },
+      "blocks": {
+        "card_1": {
+          "type": "content-card",
+          "settings": {
+            "image": "shopify://shop_images/rectangle-2040-desktop-I8262191521093414588.png",
+            "name": "Dr Jhamilia Weekers-Bowers",
+            "description": "Licensed family nurse practitioner based out of San Diego, CA, focusing on cardiology, urology, and cosmetic dermatology.",
+            "credential": "NP-C",
+            "location": "California"
+          }
+        },
+        "card_2": {
+          "type": "content-card",
+          "settings": {
+            "image": "shopify://shop_images/rectangle-2040-desktop-I8262191521093414603.png",
+            "name": "Dr Jhamilia Weekers-Bowers",
+            "description": "Licensed family nurse practitioner based out of San Diego, CA, focusing on cardiology, urology, and cosmetic dermatology.",
+            "credential": "NP-C",
+            "location": "California"
+          }
+        },
+        "card_3": {
+          "type": "content-card",
+          "settings": {
+            "image": "shopify://shop_images/rectangle-2040-desktop-I8262191521093414598.png",
+            "name": "Dr Jhamilia Weekers-Bowers",
+            "description": "Licensed family nurse practitioner based out of San Diego, CA, focusing on cardiology, urology, and cosmetic dermatology.",
+            "credential": "NP-C",
+            "location": "California"
+          }
+        },
+        "card_4": {
+          "type": "content-card",
+          "settings": {
+            "image": "shopify://shop_images/rectangle-2040-desktop-I8262191521093414603.png",
+            "name": "Dr Jhamilia Weekers-Bowers",
+            "description": "Licensed family nurse practitioner based out of San Diego, CA, focusing on cardiology, urology, and cosmetic dermatology.",
+            "credential": "NP-C",
+            "location": "California"
+          }
+        },
+        "card_5": {
+          "type": "content-card",
+          "settings": {
+            "image": "shopify://shop_images/rectangle-2040-desktop-I8262191521093414603.png",
+            "name": "Dr Jhamilia Weekers-Bowers",
+            "description": "Licensed family nurse practitioner based out of San Diego, CA, focusing on cardiology, urology, and cosmetic dermatology.",
+            "credential": "NP-C",
+            "location": "California"
+          }
+        }
+      },
+      "block_order": ["card_1", "card_2", "card_3", "card_4", "card_5"]
     }
   },
-  "order": ["hero_banner", "product_carousel", "product_carousel_acne", "split_hero"]
+  "order": ["hero_banner", "product_carousel", "product_carousel_acne", "split_hero", "content_carousel"]
 }
