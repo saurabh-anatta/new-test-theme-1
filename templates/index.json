@@ -301,6 +301,145 @@
       },
       "block_order": ["callout_1", "callout_2", "callout_3"]
     },
+    "testimonials": {
+      "type": "curology-testimonials",
+      "settings": {
+        "background_color": "#BDB4FF",
+        "subtitle": "Testimonials",
+        "heading": "Real results, real glow — 95% saw improvement in 12 weeks",
+        "ratings_text": "Over 9,000 5 star reviews",
+        "button_text": "Get started",
+        "legal_text": "*Results may vary",
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      },
+      "blocks": {
+        "nav_acne": {
+          "type": "nav-tab",
+          "settings": {
+            "label": "Acne",
+            "is_selected": true
+          }
+        },
+        "nav_hair_loss": {
+          "type": "nav-tab",
+          "settings": {
+            "label": "Hair loss",
+            "is_selected": false
+          }
+        },
+        "nav_skin_texture": {
+          "type": "nav-tab",
+          "settings": {
+            "label": "Skin texture",
+            "is_selected": false
+          }
+        },
+        "nav_rosacea": {
+          "type": "nav-tab",
+          "settings": {
+            "label": "Rosacea",
+            "is_selected": false
+          }
+        },
+        "card_1": {
+          "type": "testimonial-card",
+          "settings": {
+            "before_image": "shopify://shop_images/before-desktop-I826223384112881255.png",
+            "before_label": "Day 1",
+            "after_image": "shopify://shop_images/after-desktop-I826223384112881258.png",
+            "after_label": "After 6 weeks",
+            "quote": "\u201cI\u2019ve struggled with my skin for 10 years, and I have literally tried everything with no success.\u201d",
+            "user_info": "Briana  |  22 years old  |  Maryland",
+            "skin_type": "Skin type: Combination",
+            "highlight_1_icon": "acne",
+            "highlight_1_text": "Acne",
+            "highlight_2_icon": "clogged-pores",
+            "highlight_2_text": "Clogged pores",
+            "product_title": "Custom Formula",
+            "product_rx_label": "Rx",
+            "product_link_text": "Learn more"
+          }
+        },
+        "card_2": {
+          "type": "testimonial-card",
+          "settings": {
+            "before_image": "shopify://shop_images/before-desktop-I826223384112881194.png",
+            "before_label": "Day 1",
+            "after_image": "shopify://shop_images/after-desktop-I826223384112881197.png",
+            "after_label": "After 6 weeks",
+            "quote": "\u201cThe inflammation went down drastically and I was able to touch my face again.\u201d",
+            "user_info": "Tina  |  22 years old  |  Maryland",
+            "skin_type": "Skin type: Combination",
+            "highlight_1_icon": "acne",
+            "highlight_1_text": "Acne",
+            "highlight_2_icon": "clogged-pores",
+            "highlight_2_text": "Clogged pores",
+            "product_title": "Custom Formula",
+            "product_rx_label": "Rx",
+            "product_link_text": "Learn more"
+          }
+        },
+        "card_3": {
+          "type": "testimonial-card",
+          "settings": {
+            "before_image": "shopify://shop_images/before-desktop-I8262233841093414951.png",
+            "before_label": "Day 1",
+            "after_image": "shopify://shop_images/after-desktop-I826223384112881077.png",
+            "after_label": "After 6 weeks",
+            "quote": "\u201cI\u2019ve struggled with my skin for 10 years, and I have literally tried everything with no success.\u201d",
+            "user_info": "Briana  |  22 years old  |  Maryland",
+            "skin_type": "Skin type: Combination",
+            "highlight_1_icon": "acne",
+            "highlight_1_text": "Acne",
+            "highlight_2_icon": "clogged-pores",
+            "highlight_2_text": "Clogged pores",
+            "product_title": "Custom Formula",
+            "product_rx_label": "Rx",
+            "product_link_text": "Learn more"
+          }
+        },
+        "card_4": {
+          "type": "testimonial-card",
+          "settings": {
+            "before_image": "shopify://shop_images/before-desktop-I8262233841093414889.png",
+            "before_label": "Day 1",
+            "after_image": "shopify://shop_images/after-desktop-I8262233841093414892.png",
+            "after_label": "After 6 weeks",
+            "quote": "\u201cThe inflammation went down drastically and I was able to touch my face again.\u201d",
+            "user_info": "Tina  |  22 years old  |  Maryland",
+            "skin_type": "Skin type: Combination",
+            "highlight_1_icon": "acne",
+            "highlight_1_text": "Acne",
+            "highlight_2_icon": "clogged-pores",
+            "highlight_2_text": "Clogged pores",
+            "product_title": "Custom Formula",
+            "product_rx_label": "Rx",
+            "product_link_text": "Learn more"
+          }
+        },
+        "card_5": {
+          "type": "testimonial-card",
+          "settings": {
+            "before_image": "shopify://shop_images/before-desktop-I826223384112881074.png",
+            "before_label": "Day 1",
+            "after_image": "shopify://shop_images/after-desktop-I8262233841093414954.png",
+            "after_label": "After 6 weeks",
+            "quote": "\u201cI\u2019ve struggled with my skin for 10 years, and I have literally tried everything with no success.\u201d",
+            "user_info": "Briana  |  22 years old  |  Maryland",
+            "skin_type": "Skin type: Combination",
+            "highlight_1_icon": "acne",
+            "highlight_1_text": "Acne",
+            "highlight_2_icon": "clogged-pores",
+            "highlight_2_text": "Clogged pores",
+            "product_title": "Custom Formula",
+            "product_rx_label": "Rx",
+            "product_link_text": "Learn more"
+          }
+        }
+      },
+      "block_order": ["nav_acne", "nav_hair_loss", "nav_skin_texture", "nav_rosacea", "card_1", "card_2", "card_3", "card_4", "card_5"]
+    },
     "ingredients": {
       "type": "curology-ingredients",
       "settings": {
@@ -521,5 +660,5 @@
       "block_order": ["usp_1", "usp_2", "usp_3", "usp_4", "usp_5"]
     }
   },
-  "order": ["hero_banner", "product_carousel", "product_carousel_acne", "split_hero", "ingredients", "content_carousel", "how_it_works", "usp"]
+  "order": ["hero_banner", "product_carousel", "product_carousel_acne", "split_hero", "testimonials", "ingredients", "content_carousel", "how_it_works", "usp"]
 }
