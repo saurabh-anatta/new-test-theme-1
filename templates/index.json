@@ -43,7 +43,110 @@
         }
       },
       "block_order": ["card_1", "card_2", "card_3", "card_4"]
+    },
+    "product_carousel": {
+      "type": "curology-product-carousel",
+      "settings": {
+        "background_color": "#F1EFFF",
+        "legal_text": "*Lorem ipsum dolor sit amet",
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      },
+      "blocks": {
+        "product_1": {
+          "type": "product-card",
+          "settings": {
+            "image": "shopify://shop_images/image-desktop-I10898264611186995501173458907.jpg",
+            "badge_dark_text": "Rx",
+            "badge_light_text": "Best seller",
+            "award_badge": "shopify://shop_images/landingpageseal-1-desktop-I10898264611186995501173458912.png",
+            "title": "Custom FormulaRx",
+            "description": "Daily acne clearing treatment",
+            "show_rating": false,
+            "original_price": "$34.95",
+            "sale_price": "$4.95",
+            "sale_label": "Just pay shipping!",
+            "button_text": "Start skin quiz",
+            "button_style": "primary"
+          }
+        },
+        "product_2": {
+          "type": "product-card",
+          "settings": {
+            "image": "shopify://shop_images/image-desktop-I10898264611186997281173459408.jpg",
+            "badge_light_text": "Best seller",
+            "award_badge": "shopify://shop_images/landingpageseal-1-desktop-I10898264611186997281173459414.png",
+            "title": "Gentle Cleanser",
+            "description": "Daily acne clearing treatment",
+            "show_rating": true,
+            "rating_text": "4.8 (535)",
+            "original_price": "$11",
+            "sale_price": "$12",
+            "size_text": "80 ml",
+            "sale_label": "Black Friday Sale",
+            "variant_1": "Standard",
+            "variant_2": "Mini",
+            "variant_3": "Trial",
+            "variant_4": "Jumbo",
+            "button_text": "Add to cart",
+            "button_style": "dark"
+          }
+        },
+        "product_3": {
+          "type": "product-card",
+          "settings": {
+            "image": "shopify://shop_images/image-desktop-I10898264611186996111173459408.jpg",
+            "badge_light_text": "Best seller",
+            "award_badge": "shopify://shop_images/landingpageseal-1-desktop-I10898264611186996111173459414.png",
+            "title": "Gentle Cleanser",
+            "description": "Daily acne clearing treatment",
+            "show_rating": true,
+            "rating_text": "4.8 (535)",
+            "original_price": "$11",
+            "sale_price": "$12",
+            "size_text": "80 ml",
+            "sale_label": "Black Friday Sale",
+            "variant_1": "Standard",
+            "variant_2": "Mini",
+            "variant_3": "Trial",
+            "variant_4": "Jumbo",
+            "button_text": "Add to cart",
+            "button_style": "dark"
+          }
+        },
+        "product_4": {
+          "type": "product-card",
+          "settings": {
+            "image": "shopify://shop_images/image-desktop-I10898264611186997861173459408.jpg",
+            "badge_light_text": "Best seller",
+            "award_badge": "shopify://shop_images/landingpageseal-1-desktop-I10898264611186997861173459414.png",
+            "title": "Gentle Cleanser",
+            "description": "Daily acne clearing treatment",
+            "show_rating": true,
+            "rating_text": "4.8 (535)",
+            "original_price": "$11",
+            "sale_price": "$12",
+            "size_text": "80 ml",
+            "sale_label": "Black Friday Sale",
+            "variant_1": "Standard",
+            "variant_2": "Mini",
+            "variant_3": "Trial",
+            "variant_4": "Jumbo",
+            "button_text": "Add to cart",
+            "button_style": "dark"
+          }
+        },
+        "main_card": {
+          "type": "main-card",
+          "settings": {
+            "badge_text": "Acne control",
+            "heading": "Shop our skin clearing acne products",
+            "background_image": "shopify://shop_images/main-card-desktop-I10898264611093414366.jpg"
+          }
+        }
+      },
+      "block_order": ["product_1", "product_2", "product_3", "product_4", "main_card"]
     }
   },
-  "order": ["hero_banner"]
+  "order": ["hero_banner", "product_carousel"]
 }
