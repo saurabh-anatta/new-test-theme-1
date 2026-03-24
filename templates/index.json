@@ -396,7 +396,53 @@
         }
       },
       "block_order": ["card_1", "card_2", "card_3", "card_4", "card_5"]
+    },
+    "usp": {
+      "type": "curology-usp",
+      "settings": {
+        "background_color": "#FFFFFF",
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      },
+      "blocks": {
+        "usp_1": {
+          "type": "usp-item",
+          "settings": {
+            "icon": "dermatologist-tested",
+            "text": "Dermatologist tested"
+          }
+        },
+        "usp_2": {
+          "type": "usp-item",
+          "settings": {
+            "icon": "fragrance-free",
+            "text": "Fragrance free"
+          }
+        },
+        "usp_3": {
+          "type": "usp-item",
+          "settings": {
+            "icon": "non-comedogenic",
+            "text": "Non-comedogenic"
+          }
+        },
+        "usp_4": {
+          "type": "usp-item",
+          "settings": {
+            "icon": "paraben-free",
+            "text": "Paraben free"
+          }
+        },
+        "usp_5": {
+          "type": "usp-item",
+          "settings": {
+            "icon": "vegan",
+            "text": "Vegan"
+          }
+        }
+      },
+      "block_order": ["usp_1", "usp_2", "usp_3", "usp_4", "usp_5"]
     }
   },
-  "order": ["hero_banner", "product_carousel", "product_carousel_acne", "split_hero", "ingredients", "content_carousel"]
+  "order": ["hero_banner", "product_carousel", "product_carousel_acne", "split_hero", "ingredients", "content_carousel", "usp"]
 }
