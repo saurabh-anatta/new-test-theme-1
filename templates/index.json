@@ -47,12 +47,42 @@
     "product_carousel": {
       "type": "curology-product-carousel",
       "settings": {
+        "heading": "Get clear, glowing skin with \nour best sellers",
+        "link_text": "Shop all acne",
         "background_color": "#F1EFFF",
         "legal_text": "*Lorem ipsum dolor sit amet",
         "padding-block-start": 64,
         "padding-block-end": 64
       },
       "blocks": {
+        "nav_acne": {
+          "type": "nav-tab",
+          "settings": {
+            "label": "Acne",
+            "is_selected": true
+          }
+        },
+        "nav_anti_aging": {
+          "type": "nav-tab",
+          "settings": {
+            "label": "Anti-aging",
+            "is_selected": false
+          }
+        },
+        "nav_rosacea": {
+          "type": "nav-tab",
+          "settings": {
+            "label": "Rosacea",
+            "is_selected": false
+          }
+        },
+        "nav_hair_loss": {
+          "type": "nav-tab",
+          "settings": {
+            "label": "Hair loss",
+            "is_selected": false
+          }
+        },
         "product_1": {
           "type": "product-card",
           "settings": {
@@ -145,7 +175,7 @@
           }
         }
       },
-      "block_order": ["product_1", "product_2", "product_3", "product_4", "main_card"]
+      "block_order": ["nav_acne", "nav_anti_aging", "nav_rosacea", "nav_hair_loss", "product_1", "product_2", "product_3", "product_4", "main_card"]
     },
     "product_carousel_acne": {
       "type": "curology-product-carousel",
