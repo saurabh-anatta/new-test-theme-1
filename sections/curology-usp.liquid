@@ -1,0 +1,188 @@
+<div
+  class="curology-usp"
+  style="
+    --usp-bg: {{ section.settings.background_color }};
+    --usp-padding-top: {{ section.settings.padding-block-start }}px;
+    --usp-padding-bottom: {{ section.settings.padding-block-end }}px;
+  "
+>
+  <div class="curology-usp__container">
+    <div class="curology-usp__items">
+      {% for block in section.blocks %}
+        {% if block.type == 'usp-item' %}
+          <div class="curology-usp__item" {{ block.shopify_attributes }}>
+            <div class="curology-usp__icon">
+              {% case block.settings.icon %}
+                {% when 'dermatologist-tested' %}
+                  {{ 'dermatologist-tested.svg' | inline_asset_content }}
+                {% when 'fragrance-free' %}
+                  {{ 'fragrance-free.svg' | inline_asset_content }}
+                {% when 'non-comedogenic' %}
+                  {{ 'non-comedogenic.svg' | inline_asset_content }}
+                {% when 'paraben-free' %}
+                  {{ 'paraben-free.svg' | inline_asset_content }}
+                {% when 'vegan' %}
+                  {{ 'vegan.svg' | inline_asset_content }}
+              {% endcase %}
+            </div>
+            {% if block.settings.text != blank %}
+              <p class="curology-usp__text">{{ block.settings.text | escape }}</p>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .curology-usp {
+    background-color: var(--usp-bg, #FFFFFF);
+    padding-block-start: var(--usp-padding-top, 64px);
+    padding-block-end: var(--usp-padding-bottom, 64px);
+  }
+
+  .curology-usp__container {
+    max-width: 1408px;
+    margin: 0 auto;
+    padding: 0 64px;
+  }
+
+  .curology-usp__items {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+  }
+
+  .curology-usp__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .curology-usp__icon {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .curology-usp__icon svg {
+    width: 40px;
+    height: 40px;
+    display: block;
+    fill: #1D1D44;
+  }
+
+  .curology-usp__text {
+    font-family: var(--font-body--family), sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #1D1D44;
+    margin: 0;
+    letter-spacing: 0;
+  }
+
+  @media screen and (max-width: 960px) {
+    .curology-usp__container {
+      padding: 0 24px;
+    }
+
+    .curology-usp__items {
+      flex-wrap: wrap;
+      gap: 24px;
+      justify-content: center;
+    }
+
+    .curology-usp__item {
+      min-width: 80px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .curology-usp *,
+    .curology-usp *::before,
+    .curology-usp *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:names.curology_usp",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 64,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 64,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "usp-item",
+      "name": "USP Item",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "dermatologist-tested", "label": "Dermatologist Tested" },
+            { "value": "fragrance-free", "label": "Fragrance Free" },
+            { "value": "non-comedogenic", "label": "Non-Comedogenic" },
+            { "value": "paraben-free", "label": "Paraben Free" },
+            { "value": "vegan", "label": "Vegan" }
+          ],
+          "default": "dermatologist-tested"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Dermatologist tested"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "t:names.curology_usp"
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  }
+}
+{% endschema %}

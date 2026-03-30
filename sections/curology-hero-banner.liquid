@@ -1,0 +1,340 @@
+<div
+  class="curology-hero-banner"
+  style="
+    --hero-padding-top: {{ section.settings.padding-block-start }}px;
+    --hero-padding-bottom: {{ section.settings.padding-block-end }}px;
+  "
+>
+  {% if section.settings.background_image != blank %}
+    <img
+      class="curology-hero-banner__bg-image"
+      src="{{ section.settings.background_image | image_url: width: 1920 }}"
+      alt="{{ section.settings.background_image.alt | escape }}"
+      loading="lazy"
+      width="1920"
+      height="{{ 1920 | divided_by: section.settings.background_image.aspect_ratio | round }}"
+    >
+  {% endif %}
+
+  <div class="curology-hero-banner__overlay"></div>
+
+  <div class="curology-hero-banner__content">
+    {% if section.settings.heading != blank %}
+      <div class="curology-hero-banner__heading-wrapper">
+        <h1 class="curology-hero-banner__heading">{{ section.settings.heading | escape | newline_to_br }}</h1>
+      </div>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      <div class="curology-hero-banner__cards">
+        {% for block in section.blocks %}
+          {% if block.type == 'category-card' %}
+            <div class="curology-hero-banner__card" {{ block.shopify_attributes }}>
+              {% if block.settings.link != blank %}
+                <a href="{{ block.settings.link }}" class="curology-hero-banner__card-link" aria-label="{{ block.settings.title | escape }}">
+              {% endif %}
+
+              <div class="curology-hero-banner__card-inner">
+                <div class="curology-hero-banner__card-content">
+                  {% if block.settings.subtitle != blank %}
+                    <span class="curology-hero-banner__card-subtitle">{{ block.settings.subtitle | escape }}</span>
+                  {% endif %}
+                  {% if block.settings.title != blank %}
+                    <span class="curology-hero-banner__card-title">{{ block.settings.title | escape | newline_to_br }}</span>
+                  {% endif %}
+                </div>
+
+                {% if block.settings.image != blank %}
+                  <img
+                    class="curology-hero-banner__card-image"
+                    src="{{ block.settings.image | image_url: width: 208 }}"
+                    alt="{{ block.settings.image.alt | escape }}"
+                    loading="lazy"
+                    width="104"
+                    height="104"
+                  >
+                {% endif %}
+
+                <div class="curology-hero-banner__card-arrow">
+                  {{ 'arrow-right.svg' | inline_asset_content }}
+                </div>
+              </div>
+
+              {% if block.settings.link != blank %}
+                </a>
+              {% endif %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% stylesheet %}
+  .curology-hero-banner {
+    position: relative;
+    overflow: hidden;
+    min-height: 500px;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .curology-hero-banner__bg-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  .curology-hero-banner__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(29, 29, 68, 0) 0%, rgba(29, 29, 68, 0.2) 100%);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .curology-hero-banner__content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: var(--hero-padding-top, 64px) 64px var(--hero-padding-bottom, 64px) 64px;
+  }
+
+  .curology-hero-banner__heading-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    justify-content: center;
+  }
+
+  .curology-hero-banner__heading {
+    font-family: var(--font-heading--family), sans-serif;
+    font-weight: 700;
+    font-size: 56px;
+    line-height: 64px;
+    color: #FFFFFF;
+    margin: 0;
+    letter-spacing: 0;
+  }
+
+  .curology-hero-banner__cards {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .curology-hero-banner__card {
+    flex: 1 1 0%;
+    min-width: 260px;
+  }
+
+  .curology-hero-banner__card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .curology-hero-banner__card-inner {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 16px;
+    padding: 8px 16px;
+    background-color: #FEF0FF;
+    border-radius: 8px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+    min-height: 120px;
+  }
+
+  .curology-hero-banner__card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    justify-content: center;
+    flex: 1;
+  }
+
+  .curology-hero-banner__card-subtitle {
+    font-family: var(--font-body--family), sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    color: #1D1D44;
+    letter-spacing: 0;
+  }
+
+  .curology-hero-banner__card-title {
+    font-family: var(--font-body--family), sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 32px;
+    color: #1D1D44;
+    letter-spacing: 0;
+  }
+
+  .curology-hero-banner__card-image {
+    width: 104px;
+    height: 104px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .curology-hero-banner__card-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    background-color: #1D1D44;
+    border-radius: 20px;
+    padding: 8px;
+    transform: rotate(3.1deg);
+    flex-shrink: 0;
+  }
+
+  .curology-hero-banner__card-arrow svg {
+    width: 12px;
+    height: 12px;
+    display: block;
+  }
+
+  .curology-hero-banner__card-link:focus-visible .curology-hero-banner__card-inner {
+    outline: 2px solid #1D1D44;
+    outline-offset: 2px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .curology-hero-banner {
+      min-height: 400px;
+    }
+
+    .curology-hero-banner__content {
+      padding: var(--hero-padding-top, 32px) 24px var(--hero-padding-bottom, 32px) 24px;
+      gap: 16px;
+    }
+
+    .curology-hero-banner__heading {
+      font-size: 32px;
+      line-height: 40px;
+    }
+
+    .curology-hero-banner__cards {
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .curology-hero-banner__card {
+      min-width: 100%;
+    }
+
+    .curology-hero-banner__card-title {
+      font-size: 20px;
+      line-height: 28px;
+    }
+
+    .curology-hero-banner__card-image {
+      width: 80px;
+      height: 80px;
+    }
+
+    .curology-hero-banner__card-inner {
+      min-height: auto;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .curology-hero-banner *,
+    .curology-hero-banner *::before,
+    .curology-hero-banner *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:names.curology_hero_banner",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Custom formulas,\nvisible results."
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 64,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 64,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category-card",
+      "name": "Category Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "t:names.curology_hero_banner"
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  }
+}
+{% endschema %}

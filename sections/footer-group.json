@@ -1,0 +1,23 @@
+{
+  "type": "footer",
+  "name": "t:names.footer",
+  "sections": {
+    "curology_footer": {
+      "type": "curology-footer",
+      "settings": {
+        "menu_1": "footer-about-us",
+        "menu_1_heading": "About us",
+        "menu_2": "footer-support",
+        "menu_2_heading": "Support",
+        "email_heading": "Lorem ipsum dolor sit amet, consectetur",
+        "x_url": "https://twitter.com/curology",
+        "snapchat_url": "https://snapchat.com/add/curology",
+        "instagram_url": "https://instagram.com/curology",
+        "facebook_url": "https://facebook.com/curology",
+        "youtube_url": "https://youtube.com/curology",
+        "pinterest_url": "https://pinterest.com/curology"
+      }
+    }
+  },
+  "order": ["curology_footer"]
+}

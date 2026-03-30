@@ -1,0 +1,712 @@
+{
+  "sections": {
+    "hero_banner": {
+      "type": "curology-hero-banner",
+      "settings": {
+        "background_image": "shopify://shop_images/category-herobanner-2xl-desktop-814314862.png",
+        "heading": "Custom formulas, \nvisible results.",
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      },
+      "blocks": {
+        "card_1": {
+          "type": "category-card",
+          "settings": {
+            "subtitle": "Custom FormulaRx",
+            "title": "Prevent breakouts",
+            "image": "shopify://shop_images/image-frame-desktop-I8143148621093415667.png"
+          }
+        },
+        "card_2": {
+          "type": "category-card",
+          "settings": {
+            "subtitle": "HydroTretRx",
+            "title": "Slow signs\nof aging",
+            "image": "shopify://shop_images/image-frame-desktop-I81431486211240727.png"
+          }
+        },
+        "card_3": {
+          "type": "category-card",
+          "settings": {
+            "subtitle": "Hair FormulaRx",
+            "title": "Grow hair faster",
+            "image": "shopify://shop_images/image-frame-desktop-I81431486211240729.png"
+          }
+        },
+        "card_4": {
+          "type": "category-card",
+          "settings": {
+            "subtitle": "Body CleanseRx",
+            "title": "Glow from\nhead to toe",
+            "image": "shopify://shop_images/image-frame-desktop-I81431486211240731.png"
+          }
+        }
+      },
+      "block_order": ["card_1", "card_2", "card_3", "card_4"]
+    },
+    "product_carousel": {
+      "type": "curology-product-carousel",
+      "settings": {
+        "heading": "Get clear, glowing skin with \nour best sellers",
+        "link_text": "Shop all acne",
+        "background_color": "#F1EFFF",
+        "legal_text": "*Lorem ipsum dolor sit amet",
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      },
+      "blocks": {
+        "nav_acne": {
+          "type": "nav-tab",
+          "settings": {
+            "label": "Acne",
+            "is_selected": true
+          }
+        },
+        "nav_anti_aging": {
+          "type": "nav-tab",
+          "settings": {
+            "label": "Anti-aging",
+            "is_selected": false
+          }
+        },
+        "nav_rosacea": {
+          "type": "nav-tab",
+          "settings": {
+            "label": "Rosacea",
+            "is_selected": false
+          }
+        },
+        "nav_hair_loss": {
+          "type": "nav-tab",
+          "settings": {
+            "label": "Hair loss",
+            "is_selected": false
+          }
+        },
+        "product_1": {
+          "type": "product-card",
+          "settings": {
+            "image": "shopify://shop_images/image-desktop-I10898264611186995501173458907.jpg",
+            "badge_dark_text": "Rx",
+            "badge_light_text": "Best seller",
+            "award_badge": "shopify://shop_images/landingpageseal-1-desktop-I10898264611186995501173458912.png",
+            "title": "Custom FormulaRx",
+            "description": "Daily acne clearing treatment",
+            "show_rating": false,
+            "original_price": "$34.95",
+            "sale_price": "$4.95",
+            "sale_label": "Just pay shipping!",
+            "button_text": "Start skin quiz",
+            "button_style": "primary"
+          }
+        },
+        "product_2": {
+          "type": "product-card",
+          "settings": {
+            "image": "shopify://shop_images/image-desktop-I10898264611186997281173459408.jpg",
+            "badge_light_text": "Best seller",
+            "award_badge": "shopify://shop_images/landingpageseal-1-desktop-I10898264611186997281173459414.png",
+            "title": "Gentle Cleanser",
+            "description": "Daily acne clearing treatment",
+            "show_rating": true,
+            "rating_text": "4.8 (535)",
+            "original_price": "$11",
+            "sale_price": "$12",
+            "size_text": "80 ml",
+            "sale_label": "Black Friday Sale",
+            "variant_1": "Standard",
+            "variant_2": "Mini",
+            "variant_3": "Trial",
+            "variant_4": "Jumbo",
+            "button_text": "Add to cart",
+            "button_style": "dark"
+          }
+        },
+        "product_3": {
+          "type": "product-card",
+          "settings": {
+            "image": "shopify://shop_images/image-desktop-I10898264611186996111173459408.jpg",
+            "badge_light_text": "Best seller",
+            "award_badge": "shopify://shop_images/landingpageseal-1-desktop-I10898264611186996111173459414.png",
+            "title": "Gentle Cleanser",
+            "description": "Daily acne clearing treatment",
+            "show_rating": true,
+            "rating_text": "4.8 (535)",
+            "original_price": "$11",
+            "sale_price": "$12",
+            "size_text": "80 ml",
+            "sale_label": "Black Friday Sale",
+            "variant_1": "Standard",
+            "variant_2": "Mini",
+            "variant_3": "Trial",
+            "variant_4": "Jumbo",
+            "button_text": "Add to cart",
+            "button_style": "dark"
+          }
+        },
+        "product_4": {
+          "type": "product-card",
+          "settings": {
+            "image": "shopify://shop_images/image-desktop-I10898264611186997861173459408.jpg",
+            "badge_light_text": "Best seller",
+            "award_badge": "shopify://shop_images/landingpageseal-1-desktop-I10898264611186997861173459414.png",
+            "title": "Gentle Cleanser",
+            "description": "Daily acne clearing treatment",
+            "show_rating": true,
+            "rating_text": "4.8 (535)",
+            "original_price": "$11",
+            "sale_price": "$12",
+            "size_text": "80 ml",
+            "sale_label": "Black Friday Sale",
+            "variant_1": "Standard",
+            "variant_2": "Mini",
+            "variant_3": "Trial",
+            "variant_4": "Jumbo",
+            "button_text": "Add to cart",
+            "button_style": "dark"
+          }
+        },
+        "main_card": {
+          "type": "main-card",
+          "settings": {
+            "badge_text": "Acne control",
+            "heading": "Shop our skin clearing acne products",
+            "background_image": "shopify://shop_images/main-card-desktop-I10898264611093414366.jpg"
+          }
+        }
+      },
+      "block_order": ["nav_acne", "nav_anti_aging", "nav_rosacea", "nav_hair_loss", "product_1", "product_2", "product_3", "product_4", "main_card"]
+    },
+    "product_carousel_acne": {
+      "type": "curology-product-carousel",
+      "settings": {
+        "background_color": "#F1EFFF",
+        "padding-block-start": 64,
+        "padding-block-end": 0
+      },
+      "blocks": {
+        "main_card": {
+          "type": "main-card",
+          "settings": {
+            "badge_text": "Acne control",
+            "heading": "Shop our skin clearing acne products",
+            "background_image": "shopify://shop_images/main-card-desktop-1086924529.jpg"
+          }
+        },
+        "product_rx": {
+          "type": "product-card",
+          "settings": {
+            "image": "shopify://shop_images/image-desktop-1086924913.jpg",
+            "badge_dark_text": "Rx",
+            "badge_light_text": "Best seller",
+            "award_badge": "shopify://shop_images/landingpageseal-1-desktop-1086924918.png",
+            "title": "Custom Formula",
+            "description": "Daily acne clearing treatment",
+            "show_rating": true,
+            "rating_text": "4.8 (535)",
+            "original_price": "$34.95",
+            "button_text": "Start skin quiz",
+            "button_style": "primary"
+          }
+        },
+        "product_otc_1": {
+          "type": "product-card",
+          "settings": {
+            "image": "shopify://shop_images/image-desktop-1086924945.jpg",
+            "title": "Gentle Cleanser",
+            "description": "Lightly foaming face wash",
+            "show_rating": true,
+            "rating_text": "4.8 (535)",
+            "original_price": "$16",
+            "sale_price": "$15",
+            "size_text": "100 ml",
+            "sale_label": "70% off",
+            "variant_1": "Standard",
+            "variant_2": "Mini",
+            "button_text": "Add to cart",
+            "button_style": "dark"
+          }
+        },
+        "product_otc_2": {
+          "type": "product-card",
+          "settings": {
+            "image": "shopify://shop_images/image-desktop-1086924838.jpg",
+            "title": "Gentle Cleanser",
+            "description": "Lightly foaming face wash",
+            "show_rating": true,
+            "rating_text": "4.8 (535)",
+            "original_price": "$16",
+            "sale_price": "$15",
+            "size_text": "100 ml",
+            "sale_label": "70% off",
+            "variant_1": "Standard",
+            "variant_2": "Mini",
+            "button_text": "Add to cart",
+            "button_style": "dark"
+          }
+        },
+        "product_otc_3": {
+          "type": "product-card",
+          "settings": {
+            "image": "shopify://shop_images/image-desktop-1086924873.jpg",
+            "award_badge": "shopify://shop_images/landingpageseal-1-desktop-1086924876.png",
+            "title": "Gentle Cleanser",
+            "description": "Lightly foaming face wash",
+            "show_rating": true,
+            "rating_text": "4.8 (535)",
+            "original_price": "$16",
+            "sale_price": "$15",
+            "size_text": "100 ml",
+            "sale_label": "70% off",
+            "variant_1": "Standard",
+            "variant_2": "Mini",
+            "button_text": "Add to cart",
+            "button_style": "dark"
+          }
+        }
+      },
+      "block_order": ["main_card", "product_rx", "product_otc_1", "product_otc_2", "product_otc_3"]
+    },
+    "split_hero": {
+      "type": "curology-split-hero",
+      "settings": {
+        "heading": "Tretinoin for clearer, smoother skin",
+        "image": "shopify://shop_images/image-desktop-I8262188011093415400.png",
+        "background_color": "#F1EFFF",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      },
+      "blocks": {
+        "callout_1": {
+          "type": "icon-callout",
+          "settings": {
+            "icon": "medical-history",
+            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+          }
+        },
+        "callout_2": {
+          "type": "icon-callout",
+          "settings": {
+            "icon": "mix-ingredients",
+            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+          }
+        },
+        "callout_3": {
+          "type": "icon-callout",
+          "settings": {
+            "icon": "chest",
+            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+          }
+        }
+      },
+      "block_order": ["callout_1", "callout_2", "callout_3"]
+    },
+    "testimonials": {
+      "type": "curology-testimonials",
+      "settings": {
+        "background_color": "#BDB4FF",
+        "subtitle": "Testimonials",
+        "heading": "Real results, real glow — 95% saw improvement in 12 weeks",
+        "ratings_text": "Over 9,000 5 star reviews",
+        "button_text": "Get started",
+        "legal_text": "*Results may vary",
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      },
+      "blocks": {
+        "nav_acne": {
+          "type": "nav-tab",
+          "settings": {
+            "label": "Acne",
+            "is_selected": true
+          }
+        },
+        "nav_hair_loss": {
+          "type": "nav-tab",
+          "settings": {
+            "label": "Hair loss",
+            "is_selected": false
+          }
+        },
+        "nav_skin_texture": {
+          "type": "nav-tab",
+          "settings": {
+            "label": "Skin texture",
+            "is_selected": false
+          }
+        },
+        "nav_rosacea": {
+          "type": "nav-tab",
+          "settings": {
+            "label": "Rosacea",
+            "is_selected": false
+          }
+        },
+        "card_1": {
+          "type": "testimonial-card",
+          "settings": {
+            "before_image": "shopify://shop_images/before-desktop-I826223384112881255.png",
+            "before_label": "Day 1",
+            "after_image": "shopify://shop_images/after-desktop-I826223384112881258.png",
+            "after_label": "After 6 weeks",
+            "quote": "\u201cI\u2019ve struggled with my skin for 10 years, and I have literally tried everything with no success.\u201d",
+            "user_info": "Briana  |  22 years old  |  Maryland",
+            "skin_type": "Skin type: Combination",
+            "highlight_1_icon": "acne",
+            "highlight_1_text": "Acne",
+            "highlight_2_icon": "clogged-pores",
+            "highlight_2_text": "Clogged pores",
+            "product_title": "Custom Formula",
+            "product_rx_label": "Rx",
+            "product_link_text": "Learn more"
+          }
+        },
+        "card_2": {
+          "type": "testimonial-card",
+          "settings": {
+            "before_image": "shopify://shop_images/before-desktop-I826223384112881194.png",
+            "before_label": "Day 1",
+            "after_image": "shopify://shop_images/after-desktop-I826223384112881197.png",
+            "after_label": "After 6 weeks",
+            "quote": "\u201cThe inflammation went down drastically and I was able to touch my face again.\u201d",
+            "user_info": "Tina  |  22 years old  |  Maryland",
+            "skin_type": "Skin type: Combination",
+            "highlight_1_icon": "acne",
+            "highlight_1_text": "Acne",
+            "highlight_2_icon": "clogged-pores",
+            "highlight_2_text": "Clogged pores",
+            "product_title": "Custom Formula",
+            "product_rx_label": "Rx",
+            "product_link_text": "Learn more"
+          }
+        },
+        "card_3": {
+          "type": "testimonial-card",
+          "settings": {
+            "before_image": "shopify://shop_images/before-desktop-I8262233841093414951.png",
+            "before_label": "Day 1",
+            "after_image": "shopify://shop_images/after-desktop-I826223384112881077.png",
+            "after_label": "After 6 weeks",
+            "quote": "\u201cI\u2019ve struggled with my skin for 10 years, and I have literally tried everything with no success.\u201d",
+            "user_info": "Briana  |  22 years old  |  Maryland",
+            "skin_type": "Skin type: Combination",
+            "highlight_1_icon": "acne",
+            "highlight_1_text": "Acne",
+            "highlight_2_icon": "clogged-pores",
+            "highlight_2_text": "Clogged pores",
+            "product_title": "Custom Formula",
+            "product_rx_label": "Rx",
+            "product_link_text": "Learn more"
+          }
+        },
+        "card_4": {
+          "type": "testimonial-card",
+          "settings": {
+            "before_image": "shopify://shop_images/before-desktop-I8262233841093414889.png",
+            "before_label": "Day 1",
+            "after_image": "shopify://shop_images/after-desktop-I8262233841093414892.png",
+            "after_label": "After 6 weeks",
+            "quote": "\u201cThe inflammation went down drastically and I was able to touch my face again.\u201d",
+            "user_info": "Tina  |  22 years old  |  Maryland",
+            "skin_type": "Skin type: Combination",
+            "highlight_1_icon": "acne",
+            "highlight_1_text": "Acne",
+            "highlight_2_icon": "clogged-pores",
+            "highlight_2_text": "Clogged pores",
+            "product_title": "Custom Formula",
+            "product_rx_label": "Rx",
+            "product_link_text": "Learn more"
+          }
+        },
+        "card_5": {
+          "type": "testimonial-card",
+          "settings": {
+            "before_image": "shopify://shop_images/before-desktop-I826223384112881074.png",
+            "before_label": "Day 1",
+            "after_image": "shopify://shop_images/after-desktop-I8262233841093414954.png",
+            "after_label": "After 6 weeks",
+            "quote": "\u201cI\u2019ve struggled with my skin for 10 years, and I have literally tried everything with no success.\u201d",
+            "user_info": "Briana  |  22 years old  |  Maryland",
+            "skin_type": "Skin type: Combination",
+            "highlight_1_icon": "acne",
+            "highlight_1_text": "Acne",
+            "highlight_2_icon": "clogged-pores",
+            "highlight_2_text": "Clogged pores",
+            "product_title": "Custom Formula",
+            "product_rx_label": "Rx",
+            "product_link_text": "Learn more"
+          }
+        }
+      },
+      "block_order": ["nav_acne", "nav_hair_loss", "nav_skin_texture", "nav_rosacea", "card_1", "card_2", "card_3", "card_4", "card_5"]
+    },
+    "ingredients": {
+      "type": "curology-ingredients",
+      "settings": {
+        "background_color": "#F1EFFF",
+        "subtitle": "Our ingredients",
+        "heading": "Powerful, science-backed \ningredients that are proven to work",
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      },
+      "blocks": {
+        "card_ni": {
+          "type": "ingredient-card",
+          "settings": {
+            "image": "shopify://shop_images/rectangle-30-desktop-I781577151093414661.png",
+            "abbreviation": "Ni",
+            "name": "Niacinamide",
+            "description": "A form of vitamin B3 that soothes inflammation, helps visibly fade dark spots, and fights free radicals",
+            "highlight_1_icon": "acne",
+            "highlight_1_text": "Acne",
+            "highlight_2_icon": "clogged-pores",
+            "highlight_2_text": "Clogged pores",
+            "highlight_3_icon": "texture",
+            "highlight_3_text": "Skin texture",
+            "highlight_4_icon": "rosacea",
+            "highlight_4_text": "Rosacea"
+          }
+        },
+        "card_az": {
+          "type": "ingredient-card",
+          "settings": {
+            "image": "shopify://shop_images/rectangle-30-desktop-I781577151093414719.png",
+            "abbreviation": "Az",
+            "name": "Azelaic Acid"
+          }
+        },
+        "card_cl": {
+          "type": "ingredient-card",
+          "settings": {
+            "image": "shopify://shop_images/rectangle-30-desktop-I781577151093414728.png",
+            "abbreviation": "Cl",
+            "name": "Clindamycin"
+          }
+        },
+        "card_tr": {
+          "type": "ingredient-card",
+          "settings": {
+            "image": "shopify://shop_images/rectangle-30-desktop-I781577151093414737.png",
+            "abbreviation": "Tr",
+            "name": "Tretinoin"
+          }
+        },
+        "card_tra": {
+          "type": "ingredient-card",
+          "settings": {
+            "image": "shopify://shop_images/image-278-desktop-I781577151093414746.png",
+            "abbreviation": "Tr A",
+            "name": "Tranexamic acid"
+          }
+        }
+      },
+      "block_order": ["card_ni", "card_az", "card_cl", "card_tr", "card_tra"]
+    },
+    "content_carousel": {
+      "type": "curology-content-carousel",
+      "settings": {
+        "background_color": "#BDB4FF",
+        "subtitle": "Meet our providers",
+        "heading": "Dermatologist founded, tested &\ndeveloped",
+        "description": "We're powered by 100+ in-house licensed dermatology providers. Our derms have 1,700 interactions every day with our customers.",
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      },
+      "blocks": {
+        "card_1": {
+          "type": "content-card",
+          "settings": {
+            "image": "shopify://shop_images/rectangle-2040-desktop-I8262191521093414588.png",
+            "name": "Dr Jhamilia Weekers-Bowers",
+            "description": "Licensed family nurse practitioner based out of San Diego, CA, focusing on cardiology, urology, and cosmetic dermatology.",
+            "credential": "NP-C",
+            "location": "California"
+          }
+        },
+        "card_2": {
+          "type": "content-card",
+          "settings": {
+            "image": "shopify://shop_images/rectangle-2040-desktop-I8262191521093414603.png",
+            "name": "Dr Jhamilia Weekers-Bowers",
+            "description": "Licensed family nurse practitioner based out of San Diego, CA, focusing on cardiology, urology, and cosmetic dermatology.",
+            "credential": "NP-C",
+            "location": "California"
+          }
+        },
+        "card_3": {
+          "type": "content-card",
+          "settings": {
+            "image": "shopify://shop_images/rectangle-2040-desktop-I8262191521093414598.png",
+            "name": "Dr Jhamilia Weekers-Bowers",
+            "description": "Licensed family nurse practitioner based out of San Diego, CA, focusing on cardiology, urology, and cosmetic dermatology.",
+            "credential": "NP-C",
+            "location": "California"
+          }
+        },
+        "card_4": {
+          "type": "content-card",
+          "settings": {
+            "image": "shopify://shop_images/rectangle-2040-desktop-I8262191521093414603.png",
+            "name": "Dr Jhamilia Weekers-Bowers",
+            "description": "Licensed family nurse practitioner based out of San Diego, CA, focusing on cardiology, urology, and cosmetic dermatology.",
+            "credential": "NP-C",
+            "location": "California"
+          }
+        },
+        "card_5": {
+          "type": "content-card",
+          "settings": {
+            "image": "shopify://shop_images/rectangle-2040-desktop-I8262191521093414603.png",
+            "name": "Dr Jhamilia Weekers-Bowers",
+            "description": "Licensed family nurse practitioner based out of San Diego, CA, focusing on cardiology, urology, and cosmetic dermatology.",
+            "credential": "NP-C",
+            "location": "California"
+          }
+        }
+      },
+      "block_order": ["card_1", "card_2", "card_3", "card_4", "card_5"]
+    },
+    "how_it_works": {
+      "type": "curology-how-it-works",
+      "settings": {
+        "background_color": "#BDB4FF",
+        "title": "How it works",
+        "heading": "Better skin in just four simple steps",
+        "button_text": "Get started",
+        "disclaimer": "Subject to consultation. Cancel anytime.",
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      },
+      "blocks": {
+        "step_1": {
+          "type": "step-card",
+          "settings": {
+            "icon": "face",
+            "title": "Tell us about you",
+            "description": "Share your history, lifestyle, and skin goals. Upload photos for expert review & progress tracking."
+          }
+        },
+        "step_2": {
+          "type": "step-card",
+          "settings": {
+            "icon": "message",
+            "title": "Connect with your provider",
+            "description": "A dermatology provider reviews your skin and creates your treatment plan."
+          }
+        },
+        "step_3": {
+          "type": "step-card",
+          "settings": {
+            "icon": "c-m",
+            "title": "We customize your plan",
+            "description": "Your provider prescribes a personalized formula with three clinically proven ingredients for better results."
+          }
+        },
+        "step_4": {
+          "type": "step-card",
+          "settings": {
+            "icon": "formula-change",
+            "title": "Receive your skincare",
+            "description": "After your provider prescribes your formula and plan, your products ship every 2 months."
+          }
+        }
+      },
+      "block_order": ["step_1", "step_2", "step_3", "step_4"]
+    },
+    "usp": {
+      "type": "curology-usp",
+      "settings": {
+        "background_color": "#FFFFFF",
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      },
+      "blocks": {
+        "usp_1": {
+          "type": "usp-item",
+          "settings": {
+            "icon": "dermatologist-tested",
+            "text": "Dermatologist tested"
+          }
+        },
+        "usp_2": {
+          "type": "usp-item",
+          "settings": {
+            "icon": "fragrance-free",
+            "text": "Fragrance free"
+          }
+        },
+        "usp_3": {
+          "type": "usp-item",
+          "settings": {
+            "icon": "non-comedogenic",
+            "text": "Non-comedogenic"
+          }
+        },
+        "usp_4": {
+          "type": "usp-item",
+          "settings": {
+            "icon": "paraben-free",
+            "text": "Paraben free"
+          }
+        },
+        "usp_5": {
+          "type": "usp-item",
+          "settings": {
+            "icon": "vegan",
+            "text": "Vegan"
+          }
+        }
+      },
+      "block_order": ["usp_1", "usp_2", "usp_3", "usp_4", "usp_5"]
+    },
+    "media_mentions": {
+      "type": "curology-media-mentions",
+      "settings": {
+        "title": "In the press",
+        "background_color": "#F1EFFF",
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      },
+      "blocks": {
+        "logo_1": {
+          "type": "logo-item",
+          "settings": {
+            "image": "shopify://shop_images/image-284-desktop-I8282106671093413886.png"
+          }
+        },
+        "logo_2": {
+          "type": "logo-item",
+          "settings": {
+            "image": "shopify://shop_images/image-291-desktop-I8282106671093413890.png"
+          }
+        },
+        "logo_3": {
+          "type": "logo-item",
+          "settings": {
+            "image": "shopify://shop_images/image-291-desktop-I8282106671093413894.png"
+          }
+        },
+        "logo_4": {
+          "type": "logo-item",
+          "settings": {
+            "image": "shopify://shop_images/image-285-desktop-I8282106671093413898.png"
+          }
+        },
+        "logo_5": {
+          "type": "logo-item",
+          "settings": {
+            "image": "shopify://shop_images/image-286-desktop-I8282106671093413902.png"
+          }
+        },
+        "logo_6": {
+          "type": "logo-item",
+          "settings": {
+            "image": "shopify://shop_images/image-287-desktop-I8282106671093413906.png"
+          }
+        }
+      },
+      "block_order": ["logo_1", "logo_2", "logo_3", "logo_4", "logo_5", "logo_6"]
+    }
+  },
+  "order": ["hero_banner", "product_carousel", "product_carousel_acne", "split_hero", "testimonials", "ingredients", "content_carousel", "how_it_works", "usp", "media_mentions"]
+}

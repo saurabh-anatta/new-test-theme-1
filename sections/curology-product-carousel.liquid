@@ -1,0 +1,1060 @@
+<curology-product-carousel
+  class="curology-product-carousel"
+  style="
+    --carousel-bg: {{ section.settings.background_color }};
+    --carousel-padding-top: {{ section.settings.padding-block-start }}px;
+    --carousel-padding-bottom: {{ section.settings.padding-block-end }}px;
+  "
+>
+  {% if section.settings.heading != blank or section.settings.link_text != blank %}
+    <div class="curology-product-carousel__header">
+      {% if section.settings.heading != blank %}
+        <div class="curology-product-carousel__header-text">
+          <h2 class="curology-product-carousel__heading">{{ section.settings.heading | newline_to_br }}</h2>
+        </div>
+      {% endif %}
+      {% if section.settings.link_text != blank %}
+        <a href="{{ section.settings.link_url | default: '#' }}" class="curology-product-carousel__header-link">
+          {{ section.settings.link_text | escape }}
+        </a>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {% assign nav_tabs = section.blocks | where: 'type', 'nav-tab' %}
+  {% if nav_tabs.size > 0 %}
+    <nav class="curology-product-carousel__navigation">
+      {% for block in nav_tabs %}
+        <a
+          href="#"
+          class="curology-product-carousel__nav-tab{% if block.settings.is_selected %} curology-product-carousel__nav-tab--selected{% endif %}"
+          {{ block.shopify_attributes }}
+        >
+          {{ block.settings.label | escape }}
+        </a>
+      {% endfor %}
+    </nav>
+  {% endif %}
+
+  <div class="curology-product-carousel__inner">
+    <div class="curology-product-carousel__track">
+      {% for block in section.blocks %}
+        {% if block.type == 'main-card' %}
+          <div class="curology-product-carousel__main-card" {{ block.shopify_attributes }}>
+            {% if block.settings.background_image != blank %}
+              <img
+                class="curology-product-carousel__main-card-bg"
+                src="{{ block.settings.background_image | image_url: width: 576 }}"
+                alt="{{ block.settings.background_image.alt | escape }}"
+                loading="lazy"
+                width="288"
+                height="516"
+              >
+            {% endif %}
+            <div class="curology-product-carousel__main-card-overlay"></div>
+            <div class="curology-product-carousel__main-card-content">
+              {% if block.settings.badge_text != blank %}
+                <span class="curology-product-carousel__badge curology-product-carousel__badge--accent">
+                  {{ block.settings.badge_text | escape }}
+                </span>
+              {% endif %}
+              {% if block.settings.heading != blank %}
+                <div class="curology-product-carousel__main-card-heading">
+                  {{ block.settings.heading | escape }}
+                </div>
+              {% endif %}
+            </div>
+            {% if block.settings.link != blank %}
+              <a href="{{ block.settings.link }}" class="curology-product-carousel__main-card-link" aria-label="{{ block.settings.heading | escape }}"></a>
+            {% endif %}
+          </div>
+        {% elsif block.type == 'product-card' %}
+          <article class="curology-product-carousel__product-card" {{ block.shopify_attributes }}>
+            <div class="curology-product-carousel__product-image-wrapper">
+              {% if block.settings.image != blank %}
+                <img
+                  class="curology-product-carousel__product-image"
+                  src="{{ block.settings.image | image_url: width: 576 }}"
+                  alt="{{ block.settings.title | escape }}"
+                  loading="lazy"
+                  width="288"
+                  height="288"
+                >
+              {% endif %}
+              <div class="curology-product-carousel__badges">
+                {% if block.settings.badge_dark_text != blank %}
+                  <span class="curology-product-carousel__badge curology-product-carousel__badge--dark">
+                    {{ block.settings.badge_dark_text | escape }}
+                  </span>
+                {% endif %}
+                {% if block.settings.badge_light_text != blank %}
+                  <span class="curology-product-carousel__badge curology-product-carousel__badge--light">
+                    {{ block.settings.badge_light_text | escape }}
+                  </span>
+                {% endif %}
+              </div>
+              {% if block.settings.award_badge != blank %}
+                <div class="curology-product-carousel__award-badge">
+                  <img
+                    src="{{ block.settings.award_badge | image_url: width: 96 }}"
+                    alt="Award badge"
+                    loading="lazy"
+                    width="48"
+                    height="48"
+                  >
+                </div>
+              {% endif %}
+            </div>
+            <div class="curology-product-carousel__product-content">
+              <div class="curology-product-carousel__product-top">
+                {% if block.settings.title != blank %}
+                  <h3 class="curology-product-carousel__product-title">
+                    {% if block.settings.button_link != blank %}
+                      <a href="{{ block.settings.button_link }}" class="curology-product-carousel__product-title-link">
+                        {{ block.settings.title | escape }}
+                      </a>
+                    {% else %}
+                      {{ block.settings.title | escape }}
+                    {% endif %}
+                  </h3>
+                {% endif %}
+                {% if block.settings.description != blank %}
+                  <p class="curology-product-carousel__product-description">{{ block.settings.description | escape }}</p>
+                {% endif %}
+                {% if block.settings.show_rating %}
+                  <div class="curology-product-carousel__rating">
+                    <div class="curology-product-carousel__stars">
+                      {% for i in (1..5) %}
+                        <img src="{{ 'star-filled-13.svg' | asset_url }}" alt="" width="10" height="10" loading="lazy">
+                      {% endfor %}
+                    </div>
+                    {% if block.settings.rating_text != blank %}
+                      <span class="curology-product-carousel__rating-text">{{ block.settings.rating_text | escape }}</span>
+                    {% endif %}
+                  </div>
+                {% endif %}
+              </div>
+              <div class="curology-product-carousel__product-bottom">
+                <div class="curology-product-carousel__pricing">
+                  <div class="curology-product-carousel__price-row">
+                    <div class="curology-product-carousel__prices">
+                      {% if block.settings.original_price != blank %}
+                        <span class="curology-product-carousel__price-original">{{ block.settings.original_price | escape }}</span>
+                      {% endif %}
+                      {% if block.settings.sale_price != blank %}
+                        <span class="curology-product-carousel__price-sale">{{ block.settings.sale_price | escape }}</span>
+                      {% endif %}
+                    </div>
+                    {% if block.settings.size_text != blank %}
+                      <span class="curology-product-carousel__size-text">{{ block.settings.size_text | escape }}</span>
+                    {% endif %}
+                  </div>
+                  {% if block.settings.sale_label != blank %}
+                    <span class="curology-product-carousel__sale-label">{{ block.settings.sale_label | escape }}</span>
+                  {% endif %}
+                </div>
+                {% if block.settings.variant_1 != blank or block.settings.variant_2 != blank or block.settings.variant_3 != blank or block.settings.variant_4 != blank %}
+                  <div class="curology-product-carousel__variants">
+                    {% if block.settings.variant_1 != blank %}
+                      <span class="curology-product-carousel__variant curology-product-carousel__variant--selected">{{ block.settings.variant_1 | escape }}</span>
+                    {% endif %}
+                    {% if block.settings.variant_2 != blank %}
+                      <span class="curology-product-carousel__variant">{{ block.settings.variant_2 | escape }}</span>
+                    {% endif %}
+                    {% if block.settings.variant_3 != blank %}
+                      <span class="curology-product-carousel__variant">{{ block.settings.variant_3 | escape }}</span>
+                    {% endif %}
+                    {% if block.settings.variant_4 != blank %}
+                      <span class="curology-product-carousel__variant">{{ block.settings.variant_4 | escape }}</span>
+                    {% endif %}
+                  </div>
+                {% endif %}
+                {% if block.settings.button_text != blank %}
+                  <a
+                    href="{{ block.settings.button_link | default: '#' }}"
+                    class="curology-product-carousel__cta curology-product-carousel__cta--{{ block.settings.button_style }}"
+                  >
+                    <span>{{ block.settings.button_text | escape }}</span>
+                    {% if block.settings.button_style == 'primary' %}
+                      <span class="curology-product-carousel__cta-arrow">
+                        {{ 'icon-arrow-right.svg' | inline_asset_content }}
+                      </span>
+                    {% endif %}
+                  </a>
+                {% endif %}
+              </div>
+            </div>
+          </article>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="curology-product-carousel__footer">
+    {% if section.settings.legal_text != blank %}
+      <p class="curology-product-carousel__legal">{{ section.settings.legal_text | escape }}</p>
+    {% endif %}
+    <div class="curology-product-carousel__arrows">
+      <button
+        type="button"
+        class="curology-product-carousel__arrow"
+        data-carousel-prev
+        aria-label="Previous slide"
+        style="opacity: 0.6;"
+      >
+        {{ 'icon-arrow-left.svg' | inline_asset_content }}
+      </button>
+      <button
+        type="button"
+        class="curology-product-carousel__arrow"
+        data-carousel-next
+        aria-label="Next slide"
+      >
+        {{ 'icon-arrow-right.svg' | inline_asset_content }}
+      </button>
+    </div>
+  </div>
+</curology-product-carousel>
+
+<script src="{{ 'curology-product-carousel.js' | asset_url }}" type="module"></script>
+
+{% stylesheet %}
+  .curology-product-carousel {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    justify-content: center;
+    align-items: flex-end;
+    background-color: var(--carousel-bg, #F1EFFF);
+    padding: var(--carousel-padding-top, 64px) 64px var(--carousel-padding-bottom, 64px) 64px;
+    overflow: hidden;
+  }
+
+  .curology-product-carousel__inner {
+    width: 100%;
+    max-width: 1408px;
+    margin: 0 auto;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .curology-product-carousel__track {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    align-items: center;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    padding-inline-end: 32px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .curology-product-carousel__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Header */
+  .curology-product-carousel__header {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    align-items: flex-end;
+    width: 100%;
+    max-width: 1408px;
+    margin: 0 auto;
+  }
+
+  .curology-product-carousel__header-text {
+    flex: 1;
+  }
+
+  .curology-product-carousel__heading {
+    font-family: var(--font-heading--family), sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 48px;
+    color: #1D1D44;
+    margin: 0;
+    letter-spacing: 0;
+  }
+
+  .curology-product-carousel__header-link {
+    font-family: var(--font-heading--family), sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    color: #1D1D44;
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+    letter-spacing: 0;
+  }
+
+  .curology-product-carousel__header-link:hover {
+    text-decoration: underline;
+  }
+
+  .curology-product-carousel__header-link:focus-visible {
+    outline: 2px solid #1D1D44;
+    outline-offset: 2px;
+  }
+
+  /* Navigation */
+  .curology-product-carousel__navigation {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+    width: 100%;
+    max-width: 1408px;
+    margin: 0 auto;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .curology-product-carousel__navigation::-webkit-scrollbar {
+    display: none;
+  }
+
+  .curology-product-carousel__nav-tab {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 24px;
+    padding: 8px 16px;
+    font-family: var(--font-body--family), sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #1D1D44;
+    text-decoration: none;
+    white-space: nowrap;
+    border: 1px solid #6554E8;
+    background: transparent;
+    cursor: pointer;
+    letter-spacing: 0;
+  }
+
+  .curology-product-carousel__nav-tab--selected {
+    background-color: #6554E8;
+    color: #FFFFFF;
+    font-weight: 700;
+    line-height: 18px;
+    border-color: #6554E8;
+  }
+
+  .curology-product-carousel__nav-tab:focus-visible {
+    outline: 2px solid #1D1D44;
+    outline-offset: 2px;
+  }
+
+  /* Main Card */
+  .curology-product-carousel__main-card {
+    position: relative;
+    flex-shrink: 0;
+    width: 288px;
+    height: 516px;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 16px;
+  }
+
+  .curology-product-carousel__main-card-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  .curology-product-carousel__main-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(29, 29, 68, 0) 0%, rgba(29, 29, 68, 1) 100%);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .curology-product-carousel__main-card-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    gap: 8px;
+  }
+
+  .curology-product-carousel__main-card-heading {
+    font-family: var(--font-heading--family), sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 32px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+  }
+
+  .curology-product-carousel__main-card-link {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    text-decoration: none;
+  }
+
+  .curology-product-carousel__main-card-link:focus-visible {
+    outline: 2px solid #FFFFFF;
+    outline-offset: -2px;
+    border-radius: 8px;
+  }
+
+  /* Badge styles */
+  .curology-product-carousel__badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 24px;
+    padding: 1px 8px;
+    font-family: var(--font-body--family), sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+
+  .curology-product-carousel__badge--accent {
+    background-color: #BDB4FF;
+    color: #1D1D44;
+    border: 1px solid #1D1D44;
+    border-radius: 12px;
+    align-self: flex-start;
+  }
+
+  .curology-product-carousel__badge--dark {
+    background-color: #1D1D44;
+    color: #FFFFFF;
+  }
+
+  .curology-product-carousel__badge--light {
+    background-color: #FFFFFF;
+    color: #1D1D44;
+  }
+
+  /* Product Card */
+  .curology-product-carousel__product-card {
+    position: relative;
+    flex-shrink: 0;
+    width: 288px;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .curology-product-carousel__product-image-wrapper {
+    position: relative;
+    width: 288px;
+    height: 288px;
+    border-radius: 8px 8px 0 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .curology-product-carousel__product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .curology-product-carousel__badges {
+    position: absolute;
+    top: 12px;
+    inset-inline-start: 12px;
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    align-items: center;
+    z-index: 1;
+  }
+
+  .curology-product-carousel__award-badge {
+    position: absolute;
+    top: 12px;
+    inset-inline-end: 12px;
+    width: 48px;
+    height: 48px;
+    z-index: 1;
+  }
+
+  .curology-product-carousel__award-badge img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  /* Product Content */
+  .curology-product-carousel__product-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    justify-content: space-between;
+    padding: 16px;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  .curology-product-carousel__product-top {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .curology-product-carousel__product-title {
+    font-family: var(--font-heading--family), sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    color: #1D1D44;
+    margin: 0;
+    letter-spacing: 0;
+  }
+
+  .curology-product-carousel__product-title-link {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .curology-product-carousel__product-title-link:focus-visible {
+    outline: 2px solid #1D1D44;
+    outline-offset: 2px;
+  }
+
+  .curology-product-carousel__product-description {
+    font-family: var(--font-body--family), sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    color: #1D1D44;
+    margin: 0;
+    letter-spacing: 0;
+  }
+
+  /* Rating */
+  .curology-product-carousel__rating {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    align-items: center;
+  }
+
+  .curology-product-carousel__stars {
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+    align-items: center;
+  }
+
+  .curology-product-carousel__stars img {
+    display: block;
+  }
+
+  .curology-product-carousel__rating-text {
+    font-family: var(--font-body--family), sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #1D1D44;
+    letter-spacing: 0;
+  }
+
+  /* Product Bottom */
+  .curology-product-carousel__product-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+  }
+
+  /* Pricing */
+  .curology-product-carousel__pricing {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+  }
+
+  .curology-product-carousel__price-row {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .curology-product-carousel__prices {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    align-items: center;
+  }
+
+  .curology-product-carousel__price-original {
+    font-family: var(--font-body--family), sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    color: #4A4A69;
+    letter-spacing: 0;
+  }
+
+  .curology-product-carousel__price-sale {
+    font-family: var(--font-body--family), sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    color: #6554E8;
+    letter-spacing: 0;
+  }
+
+  .curology-product-carousel__size-text {
+    font-family: var(--font-body--family), sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #1D1D44;
+    letter-spacing: 0;
+  }
+
+  .curology-product-carousel__sale-label {
+    font-family: var(--font-body--family), sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 14px;
+    color: #6554E8;
+    letter-spacing: 0;
+  }
+
+  /* Variants */
+  .curology-product-carousel__variants {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    align-items: center;
+    padding: 4px 0;
+    width: 100%;
+  }
+
+  .curology-product-carousel__variant {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 24px;
+    padding: 1px 8px;
+    font-family: var(--font-body--family), sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #1D1D44;
+    background-color: #FFFFFF;
+    border: 1px solid #1D1D44;
+    white-space: nowrap;
+    letter-spacing: 0;
+  }
+
+  .curology-product-carousel__variant--selected {
+    background-color: #D2CCFF;
+    border-width: 2px;
+    font-weight: 700;
+  }
+
+  /* CTA Button */
+  .curology-product-carousel__cta {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 16px;
+    border-radius: 56px;
+    border: none;
+    font-family: var(--font-body--family), sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    color: #FFFFFF;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+    letter-spacing: 0;
+  }
+
+  .curology-product-carousel__cta--primary {
+    background-color: #6554E8;
+  }
+
+  .curology-product-carousel__cta--dark {
+    background-color: #1D1D44;
+  }
+
+  .curology-product-carousel__cta:focus-visible {
+    outline: 2px solid #1D1D44;
+    outline-offset: 2px;
+  }
+
+  .curology-product-carousel__cta-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 16px;
+    height: 16px;
+  }
+
+  .curology-product-carousel__cta-arrow svg {
+    width: 16px;
+    height: 16px;
+    display: block;
+  }
+
+  /* Footer */
+  .curology-product-carousel__footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 497px;
+    width: 100%;
+    max-width: 1408px;
+    margin: 0 auto;
+  }
+
+  .curology-product-carousel__legal {
+    font-family: var(--font-body--family), sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #1D1D44;
+    margin: 0;
+    flex: 1;
+    letter-spacing: 0;
+  }
+
+  .curology-product-carousel__arrows {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .curology-product-carousel__arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    padding: 8px;
+    background-color: #FFFFFF;
+    border: 1px solid #1D1D44;
+    cursor: pointer;
+    transform: rotate(3.1deg);
+  }
+
+  .curology-product-carousel__arrow svg {
+    width: 16px;
+    height: 16px;
+    display: block;
+  }
+
+  .curology-product-carousel__arrow:focus-visible {
+    outline: 2px solid #1D1D44;
+    outline-offset: 2px;
+  }
+
+  /* Mobile */
+  @media screen and (max-width: 960px) {
+    .curology-product-carousel {
+      padding: 32px 24px;
+      gap: 24px;
+    }
+
+    .curology-product-carousel__header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .curology-product-carousel__heading {
+      font-size: 28px;
+      line-height: 36px;
+    }
+
+    .curology-product-carousel__navigation {
+      gap: 8px;
+    }
+
+    .curology-product-carousel__inner {
+      border-radius: 8px;
+    }
+
+    .curology-product-carousel__track {
+      gap: 16px;
+      scroll-snap-type: x mandatory;
+      padding-inline-end: 16px;
+    }
+
+    .curology-product-carousel__main-card {
+      width: 260px;
+      height: 440px;
+      scroll-snap-align: start;
+    }
+
+    .curology-product-carousel__product-card {
+      width: 260px;
+      scroll-snap-align: start;
+    }
+
+    .curology-product-carousel__product-image-wrapper {
+      width: 260px;
+      height: 260px;
+    }
+
+    .curology-product-carousel__arrows {
+      display: none;
+    }
+
+    .curology-product-carousel__footer {
+      gap: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .curology-product-carousel__track {
+      scroll-behavior: auto;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:names.curology_product_carousel",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link text"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link URL"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#F1EFFF"
+    },
+    {
+      "type": "text",
+      "id": "legal_text",
+      "label": "Legal text"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 64,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 64,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "nav-tab",
+      "name": "Nav Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label"
+        },
+        {
+          "type": "checkbox",
+          "id": "is_selected",
+          "label": "Selected",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "main-card",
+      "name": "Main Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "badge_text",
+          "label": "Badge text"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "image_picker",
+          "id": "background_image",
+          "label": "Background image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    },
+    {
+      "type": "product-card",
+      "name": "Product Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Product image"
+        },
+        {
+          "type": "text",
+          "id": "badge_dark_text",
+          "label": "Dark badge text"
+        },
+        {
+          "type": "text",
+          "id": "badge_light_text",
+          "label": "Light badge text"
+        },
+        {
+          "type": "image_picker",
+          "id": "award_badge",
+          "label": "Award badge image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_rating",
+          "label": "Show rating",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "rating_text",
+          "label": "Rating text"
+        },
+        {
+          "type": "text",
+          "id": "original_price",
+          "label": "Original price"
+        },
+        {
+          "type": "text",
+          "id": "sale_price",
+          "label": "Sale price"
+        },
+        {
+          "type": "text",
+          "id": "size_text",
+          "label": "Size text"
+        },
+        {
+          "type": "text",
+          "id": "sale_label",
+          "label": "Sale label"
+        },
+        {
+          "type": "text",
+          "id": "variant_1",
+          "label": "Variant 1 (selected)"
+        },
+        {
+          "type": "text",
+          "id": "variant_2",
+          "label": "Variant 2"
+        },
+        {
+          "type": "text",
+          "id": "variant_3",
+          "label": "Variant 3"
+        },
+        {
+          "type": "text",
+          "id": "variant_4",
+          "label": "Variant 4"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text"
+        },
+        {
+          "type": "select",
+          "id": "button_style",
+          "label": "Button style",
+          "options": [
+            { "value": "primary", "label": "Primary" },
+            { "value": "dark", "label": "Dark" }
+          ],
+          "default": "dark"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "t:names.curology_product_carousel"
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  }
+}
+{% endschema %}

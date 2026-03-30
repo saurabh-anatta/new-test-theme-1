@@ -1,0 +1,29 @@
+{
+  "type": "header",
+  "name": "t:names.header",
+  "sections": {
+    "brand_switcher": {
+      "type": "brand-switcher",
+      "settings": {}
+    },
+    "announcement": {
+      "type": "curology-announcement",
+      "settings": {
+        "text": "Black Friday Sale: Get up to 50% off",
+        "cta_text": "Shop now"
+      }
+    },
+    "header": {
+      "type": "curology-header",
+      "settings": {
+        "menu": "main-menu",
+        "cta_text": "Find your treatment"
+      }
+    }
+  },
+  "order": [
+    "brand_switcher",
+    "announcement",
+    "header"
+  ]
+}

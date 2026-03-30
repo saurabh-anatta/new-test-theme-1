@@ -1,0 +1,509 @@
+{% liquid
+  assign menu = linklists[section.settings.menu]
+  assign cta_text = section.settings.cta_text
+  assign cta_url = section.settings.cta_url
+%}
+
+<div
+  class="curology-header"
+  style="
+    --header-bg: {{ section.settings.background_color }};
+    --header-cta-bg: {{ section.settings.cta_background_color }};
+    --header-padding-top: {{ section.settings.padding-block-start }}px;
+    --header-padding-bottom: {{ section.settings.padding-block-end }}px;
+  "
+>
+  <header class="curology-header__inner">
+    {%- comment -%} Logo {%- endcomment -%}
+    <a href="{{ routes.root_url }}" class="curology-header__logo" aria-label="{{ shop.name }}">
+      {{ 'logo-curology-dark.svg' | inline_asset_content }}
+    </a>
+
+    {%- comment -%} Right side {%- endcomment -%}
+    <div class="curology-header__right">
+      {%- comment -%} Navigation links {%- endcomment -%}
+      {% if menu != blank %}
+        <nav class="curology-header__nav" aria-label="Main navigation">
+          {% for link in menu.links %}
+            <a href="{{ link.url }}" class="curology-header__nav-link">
+              {{ link.title | escape }}
+              {% if link.links.size > 0 %}
+                <span class="curology-header__caret">
+                  {{ 'caret-down.svg' | inline_asset_content }}
+                </span>
+              {% endif %}
+            </a>
+          {% endfor %}
+        </nav>
+      {% endif %}
+
+      {%- comment -%} CTA Button {%- endcomment -%}
+      {% if cta_text != blank %}
+        <div class="curology-header__cta-wrapper">
+          <a href="{{ cta_url | default: '#' }}" class="curology-header__cta">
+            {{ cta_text | escape }}
+          </a>
+        </div>
+      {% endif %}
+
+      {%- comment -%} Icons {%- endcomment -%}
+      <div class="curology-header__icons">
+        <a href="{{ routes.account_url }}" class="curology-header__icon curology-header__icon--user" aria-label="Account">
+          {{ 'user.svg' | inline_asset_content }}
+        </a>
+        <a href="{{ routes.cart_url }}" class="curology-header__icon curology-header__icon--cart" aria-label="Cart">
+          {{ 'bag.svg' | inline_asset_content }}
+          <span class="curology-header__cart-badge" {% if cart.item_count == 0 %}hidden{% endif %}>
+            {{ cart.item_count }}
+          </span>
+        </a>
+        <button class="curology-header__hamburger" aria-label="Open menu" aria-expanded="false" type="button">
+          <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M0 1H16M0 7H16M0 13H16" stroke="#FFFFFF" stroke-width="2"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  {%- comment -%} Mobile drawer {%- endcomment -%}
+  <div class="curology-header__drawer" aria-hidden="true">
+    <div class="curology-header__drawer-backdrop"></div>
+    <div class="curology-header__drawer-panel">
+      <div class="curology-header__drawer-header">
+        <button class="curology-header__drawer-close" aria-label="Close menu" type="button">
+          {{ 'x.svg' | inline_asset_content }}
+        </button>
+      </div>
+      <nav class="curology-header__drawer-nav" aria-label="Mobile navigation">
+        {% if menu != blank %}
+          {% for link in menu.links %}
+            <a href="{{ link.url }}" class="curology-header__drawer-link">
+              {{ link.title | escape }}
+            </a>
+          {% endfor %}
+        {% endif %}
+        {% if cta_text != blank %}
+          <a href="{{ cta_url | default: '#' }}" class="curology-header__drawer-cta">
+            {{ cta_text | escape }}
+          </a>
+        {% endif %}
+      </nav>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    var section = document.currentScript.closest('.shopify-section');
+    if (!section) return;
+
+    var hamburger = section.querySelector('.curology-header__hamburger');
+    var drawer = section.querySelector('.curology-header__drawer');
+    var closeBtn = section.querySelector('.curology-header__drawer-close');
+    var backdrop = section.querySelector('.curology-header__drawer-backdrop');
+
+    function openDrawer() {
+      drawer.classList.add('curology-header__drawer--open');
+      drawer.setAttribute('aria-hidden', 'false');
+      hamburger.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDrawer() {
+      drawer.classList.remove('curology-header__drawer--open');
+      drawer.setAttribute('aria-hidden', 'true');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+
+    if (hamburger) hamburger.addEventListener('click', openDrawer);
+    if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+    if (backdrop) backdrop.addEventListener('click', closeDrawer);
+  })();
+</script>
+
+{% stylesheet %}
+  /* Base */
+  .curology-header {
+    background-color: var(--header-bg, #1D1D44);
+    padding-block-start: var(--header-padding-top, 0px);
+    padding-block-end: var(--header-padding-bottom, 0px);
+  }
+
+  /* Inner header */
+  .curology-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: 64px;
+    height: 80px;
+    gap: 24px;
+  }
+
+  /* Logo */
+  .curology-header__logo {
+    display: inline-flex;
+    align-items: center;
+    line-height: 0;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .curology-header__logo svg {
+    height: 34px;
+    width: auto;
+  }
+
+  /* Right container */
+  .curology-header__right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 32px;
+  }
+
+  /* Navigation */
+  .curology-header__nav {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .curology-header__nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 8px;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 700;
+    color: #FFFFFF;
+    text-decoration: none;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .curology-header__nav-link:hover {
+    opacity: 0.8;
+  }
+
+  .curology-header__caret {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .curology-header__caret svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* CTA */
+  .curology-header__cta-wrapper {
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .curology-header__cta-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #F1EFFF;
+    border-radius: 24px;
+    filter: blur(24px);
+    z-index: 0;
+    opacity: 0.5;
+  }
+
+  .curology-header__cta {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 24px;
+    background-color: var(--header-cta-bg, #6554E8);
+    color: #FFFFFF;
+    border: 1px solid #F1EFFF;
+    border-radius: 56px;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    text-decoration: none;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+    white-space: nowrap;
+  }
+
+  .curology-header__cta:hover {
+    opacity: 0.9;
+  }
+
+  /* Icons */
+  .curology-header__icons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .curology-header__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    line-height: 0;
+    color: #FFFFFF;
+  }
+
+  .curology-header__icon svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .curology-header__icon--cart {
+    position: relative;
+    width: 24px;
+    height: 24px;
+  }
+
+  .curology-header__icon--cart svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .curology-header__cart-badge {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 16px;
+    height: 16px;
+    background-color: #6554E8;
+    color: #FFFFFF;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 16px;
+    text-align: center;
+    box-shadow: 0 0 8px #FFFFFF;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* Hamburger */
+  .curology-header__hamburger {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    line-height: 0;
+  }
+
+  /* Drawer */
+  .curology-header__drawer {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+  }
+
+  .curology-header__drawer--open {
+    display: block;
+  }
+
+  .curology-header__drawer-backdrop {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .curology-header__drawer-panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 300px;
+    max-width: 80vw;
+    background-color: #1D1D44;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+  }
+
+  .curology-header__drawer--open .curology-header__drawer-panel {
+    transform: translateX(0);
+  }
+
+  .curology-header__drawer-header {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .curology-header__drawer-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    line-height: 0;
+    color: #FFFFFF;
+  }
+
+  .curology-header__drawer-close svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .curology-header__drawer-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .curology-header__drawer-link {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 700;
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 8px 0;
+  }
+
+  .curology-header__drawer-link:hover {
+    opacity: 0.8;
+  }
+
+  .curology-header__drawer-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    background-color: #6554E8;
+    color: #FFFFFF;
+    border: 1px solid #F1EFFF;
+    border-radius: 56px;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    text-decoration: none;
+    text-align: center;
+    margin-block-start: 8px;
+  }
+
+  /* Mobile */
+  @media screen and (max-width: 960px) {
+    .curology-header__inner {
+      padding-inline: 16px;
+      height: 64px;
+    }
+
+    .curology-header__nav {
+      display: none;
+    }
+
+    .curology-header__cta-wrapper {
+      display: none;
+    }
+
+    .curology-header__icon--user {
+      display: none;
+    }
+
+    .curology-header__hamburger {
+      display: inline-flex;
+    }
+
+    .curology-header__right {
+      gap: 12px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .curology-header__drawer-panel {
+      transition: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:names.curology_header",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA text",
+      "default": "Find your treatment"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA link"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#1D1D44"
+    },
+    {
+      "type": "color",
+      "id": "cta_background_color",
+      "label": "CTA background color",
+      "default": "#6554E8"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 0,
+      "unit": "px"
+    }
+  ],
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "presets": [
+    {
+      "name": "t:names.curology_header"
+    }
+  ]
+}
+{% endschema %}

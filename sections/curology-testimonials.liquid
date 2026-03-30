@@ -1,0 +1,974 @@
+<curology-testimonials
+  class="curology-testimonials"
+  style="
+    --testimonials-bg: {{ section.settings.background_color }};
+    --testimonials-padding-top: {{ section.settings.padding-block-start }}px;
+    --testimonials-padding-bottom: {{ section.settings.padding-block-end }}px;
+  "
+>
+  <div class="curology-testimonials__heading-area">
+    <div class="curology-testimonials__title-row">
+      <div class="curology-testimonials__title-left">
+        {% if section.settings.subtitle != blank %}
+          <p class="curology-testimonials__subtitle">{{ section.settings.subtitle | escape }}</p>
+        {% endif %}
+        {% if section.settings.heading != blank %}
+          <h2 class="curology-testimonials__heading">{{ section.settings.heading | escape }}</h2>
+        {% endif %}
+        {% if section.settings.ratings_text != blank %}
+          <div class="curology-testimonials__ratings">
+            <div class="curology-testimonials__stars">
+              <img src="{{ 'star-filled-13.svg' | asset_url }}" alt="" width="20" height="20" loading="lazy">
+              <img src="{{ 'star-filled-13.svg' | asset_url }}" alt="" width="20" height="20" loading="lazy">
+              <img src="{{ 'star-filled-13.svg' | asset_url }}" alt="" width="20" height="20" loading="lazy">
+              <img src="{{ 'star-filled-13.svg' | asset_url }}" alt="" width="20" height="20" loading="lazy">
+              <img src="{{ 'star-filled-13.svg' | asset_url }}" alt="" width="20" height="20" loading="lazy">
+            </div>
+            <span class="curology-testimonials__ratings-text">{{ section.settings.ratings_text | escape }}</span>
+          </div>
+        {% endif %}
+      </div>
+      {% if section.settings.button_text != blank %}
+        <a
+          class="curology-testimonials__cta"
+          {% if section.settings.button_url != blank %}href="{{ section.settings.button_url }}"{% endif %}
+        >
+          <span class="curology-testimonials__cta-text">{{ section.settings.button_text | escape }}</span>
+          <span class="curology-testimonials__cta-icon">{{ 'arrow-right.svg' | inline_asset_content }}</span>
+        </a>
+      {% endif %}
+    </div>
+
+    {% liquid
+      assign has_nav_tabs = false
+      for block in section.blocks
+        if block.type == 'nav-tab'
+          assign has_nav_tabs = true
+          break
+        endif
+      endfor
+    %}
+    {% if has_nav_tabs %}
+      <div class="curology-testimonials__navigation">
+        {% for block in section.blocks %}
+          {% if block.type == 'nav-tab' %}
+            <button
+              type="button"
+              class="curology-testimonials__nav-tab{% if block.settings.is_selected %} curology-testimonials__nav-tab--selected{% endif %}"
+              {{ block.shopify_attributes }}
+            >
+              {{ block.settings.label | escape }}
+            </button>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="curology-testimonials__carousel">
+    <div class="curology-testimonials__track">
+      {% for block in section.blocks %}
+        {% if block.type == 'testimonial-card' %}
+          <div class="curology-testimonials__card" {{ block.shopify_attributes }}>
+            <div class="curology-testimonials__card-images">
+              {% if block.settings.before_image != blank %}
+                <div class="curology-testimonials__card-before">
+                  <img
+                    class="curology-testimonials__card-img"
+                    src="{{ block.settings.before_image | image_url: width: 328 }}"
+                    alt="Before"
+                    loading="lazy"
+                    width="164"
+                    height="220"
+                  >
+                  {% if block.settings.before_label != blank %}
+                    <span class="curology-testimonials__badge">{{ block.settings.before_label | escape }}</span>
+                  {% endif %}
+                </div>
+              {% endif %}
+              {% if block.settings.after_image != blank %}
+                <div class="curology-testimonials__card-after">
+                  <img
+                    class="curology-testimonials__card-img"
+                    src="{{ block.settings.after_image | image_url: width: 328 }}"
+                    alt="After"
+                    loading="lazy"
+                    width="164"
+                    height="220"
+                  >
+                  {% if block.settings.after_label != blank %}
+                    <span class="curology-testimonials__badge">{{ block.settings.after_label | escape }}</span>
+                  {% endif %}
+                </div>
+              {% endif %}
+            </div>
+
+            <div class="curology-testimonials__card-content">
+              <div class="curology-testimonials__card-user-content">
+                {% if block.settings.quote != blank %}
+                  <p class="curology-testimonials__card-quote">{{ block.settings.quote }}</p>
+                {% endif %}
+                {% if block.settings.user_info != blank %}
+                  <div class="curology-testimonials__card-section">
+                    <p class="curology-testimonials__card-user-info">{{ block.settings.user_info | escape }}</p>
+                  </div>
+                {% endif %}
+                {% if block.settings.skin_type != blank %}
+                  <div class="curology-testimonials__card-section">
+                    <p class="curology-testimonials__card-skin-type">{{ block.settings.skin_type | escape }}</p>
+                  </div>
+                {% endif %}
+                {% liquid
+                  assign has_highlights = false
+                  if block.settings.highlight_1_icon != 'none' and block.settings.highlight_1_text != blank
+                    assign has_highlights = true
+                  elsif block.settings.highlight_2_icon != 'none' and block.settings.highlight_2_text != blank
+                    assign has_highlights = true
+                  endif
+                %}
+                {% if has_highlights %}
+                  <div class="curology-testimonials__card-highlights">
+                    {% for i in (1..2) %}
+                      {% liquid
+                        assign icon_key = 'highlight_' | append: i | append: '_icon'
+                        assign text_key = 'highlight_' | append: i | append: '_text'
+                        assign icon_val = block.settings[icon_key]
+                        assign text_val = block.settings[text_key]
+                      %}
+                      {% if icon_val != 'none' and text_val != blank %}
+                        <div class="curology-testimonials__highlight">
+                          <span class="curology-testimonials__highlight-icon">
+                            {% case icon_val %}
+                              {% when 'acne' %}
+                                {{ 'acne-7.svg' | inline_asset_content }}
+                              {% when 'clogged-pores' %}
+                                {{ 'clogged-pores.svg' | inline_asset_content }}
+                              {% when 'texture' %}
+                                {{ 'texture.svg' | inline_asset_content }}
+                              {% when 'rosacea' %}
+                                {{ 'rosacea.svg' | inline_asset_content }}
+                            {% endcase %}
+                          </span>
+                          <span class="curology-testimonials__highlight-text">{{ text_val | escape }}</span>
+                        </div>
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+
+            <div class="curology-testimonials__card-product">
+              {% if block.settings.product_image != blank %}
+                <img
+                  class="curology-testimonials__product-img"
+                  src="{{ block.settings.product_image | image_url: width: 80 }}"
+                  alt="{{ block.settings.product_title | escape }}"
+                  loading="lazy"
+                  width="40"
+                  height="40"
+                >
+              {% else %}
+                <div class="curology-testimonials__product-img-placeholder"></div>
+              {% endif %}
+              <div class="curology-testimonials__product-info">
+                {% if block.settings.product_title != blank %}
+                  <div class="curology-testimonials__product-title-row">
+                    <span class="curology-testimonials__product-title">{{ block.settings.product_title | escape }}</span>
+                    {% if block.settings.product_rx_label != blank %}
+                      <span class="curology-testimonials__product-rx">{{ block.settings.product_rx_label | escape }}</span>
+                    {% endif %}
+                  </div>
+                {% endif %}
+                {% if block.settings.product_link_text != blank %}
+                  {% if block.settings.product_link_url != blank %}
+                    <a class="curology-testimonials__product-link" href="{{ block.settings.product_link_url }}">{{ block.settings.product_link_text | escape }}</a>
+                  {% else %}
+                    <span class="curology-testimonials__product-link">{{ block.settings.product_link_text | escape }}</span>
+                  {% endif %}
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="curology-testimonials__footer">
+    {% if section.settings.legal_text != blank %}
+      <p class="curology-testimonials__legal">{{ section.settings.legal_text | escape }}</p>
+    {% endif %}
+    <div class="curology-testimonials__arrows-wrapper">
+      <div class="curology-testimonials__arrows">
+        <button
+          type="button"
+          class="curology-testimonials__arrow"
+          data-carousel-prev
+          aria-label="Previous slide"
+          style="opacity: 0.6;"
+        >
+          {{ 'arrow-left.svg' | inline_asset_content }}
+        </button>
+        <button
+          type="button"
+          class="curology-testimonials__arrow"
+          data-carousel-next
+          aria-label="Next slide"
+        >
+          {{ 'arrow-right.svg' | inline_asset_content }}
+        </button>
+      </div>
+    </div>
+  </div>
+</curology-testimonials>
+
+<script src="{{ 'curology-testimonials.js' | asset_url }}" type="module"></script>
+
+{% stylesheet %}
+  .curology-testimonials {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--testimonials-bg, #BDB4FF);
+    padding: var(--testimonials-padding-top, 64px) 64px var(--testimonials-padding-bottom, 64px) 64px;
+    overflow: hidden;
+  }
+
+  .curology-testimonials__heading-area {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    max-width: 1408px;
+  }
+
+  .curology-testimonials__title-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 8px;
+  }
+
+  .curology-testimonials__title-left {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .curology-testimonials__subtitle {
+    font-family: var(--font-subheading--family), monospace;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    color: #1D1D44;
+    margin: 0;
+    letter-spacing: 0;
+  }
+
+  .curology-testimonials__heading {
+    font-family: var(--font-heading--family), sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 48px;
+    color: #1D1D44;
+    margin: 0;
+    letter-spacing: 0;
+  }
+
+  .curology-testimonials__ratings {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    align-items: center;
+  }
+
+  .curology-testimonials__stars {
+    display: flex;
+    flex-direction: row;
+    gap: 2px;
+    align-items: center;
+  }
+
+  .curology-testimonials__stars img {
+    width: 20px;
+    height: 20px;
+    display: block;
+  }
+
+  .curology-testimonials__ratings-text {
+    font-family: var(--font-body--family), sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    color: #1D1D44;
+    letter-spacing: 0;
+  }
+
+  .curology-testimonials__cta {
+    display: inline-flex;
+    flex-direction: row;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 24px;
+    background-color: #1D1D44;
+    border-radius: 56px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .curology-testimonials__cta-text {
+    font-family: var(--font-heading--family), sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    padding-inline-start: 16px;
+  }
+
+  .curology-testimonials__cta-icon {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 16px;
+    height: 16px;
+  }
+
+  .curology-testimonials__cta-icon svg {
+    width: 16px;
+    height: 16px;
+    display: block;
+    color: #FFFFFF;
+    fill: #FFFFFF;
+  }
+
+  .curology-testimonials__cta-icon svg path {
+    fill: #FFFFFF;
+  }
+
+  .curology-testimonials__navigation {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .curology-testimonials__nav-tab {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 16px;
+    border-radius: 24px;
+    border: 1px solid #6554E8;
+    background-color: transparent;
+    cursor: pointer;
+    font-family: var(--font-body--family), sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #1D1D44;
+    text-align: center;
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+
+  .curology-testimonials__nav-tab--selected {
+    background-color: #6554E8;
+    border-color: #6554E8;
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  .curology-testimonials__nav-tab:focus-visible {
+    outline: 2px solid #1D1D44;
+    outline-offset: 2px;
+  }
+
+  .curology-testimonials__carousel {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .curology-testimonials__track {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    padding-inline: 16px 16px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .curology-testimonials__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .curology-testimonials__card {
+    flex-shrink: 0;
+    width: 328px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+    overflow: hidden;
+  }
+
+  .curology-testimonials__card-images {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 220px;
+  }
+
+  .curology-testimonials__card-before {
+    position: relative;
+    width: 50%;
+    height: 220px;
+  }
+
+  .curology-testimonials__card-after {
+    position: relative;
+    width: 50%;
+    height: 220px;
+  }
+
+  .curology-testimonials__card-before .curology-testimonials__card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 8px 0 0 0;
+  }
+
+  .curology-testimonials__card-after .curology-testimonials__card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 0 8px 0 0;
+  }
+
+  .curology-testimonials__badge {
+    position: absolute;
+    bottom: 4px;
+    left: 4px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 8px;
+    border-radius: 12px;
+    background-color: #FEC5FE;
+    font-family: var(--font-heading--family), sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 14px;
+    color: #1D1D44;
+    letter-spacing: 0;
+    height: 20px;
+  }
+
+  .curology-testimonials__card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 24px;
+    background-color: #FFFFFF;
+    flex-grow: 1;
+  }
+
+  .curology-testimonials__card-user-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .curology-testimonials__card-quote {
+    font-family: var(--font-body--family), sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    color: #1D1D44;
+    margin: 0;
+    letter-spacing: 0;
+  }
+
+  .curology-testimonials__card-section {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .curology-testimonials__card-user-info {
+    font-family: var(--font-body--family), sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #1D1D44;
+    margin: 0;
+    letter-spacing: 0;
+  }
+
+  .curology-testimonials__card-skin-type {
+    font-family: var(--font-body--family), sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #1D1D44;
+    margin: 0;
+    letter-spacing: 0;
+  }
+
+  .curology-testimonials__card-highlights {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .curology-testimonials__highlight {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    align-items: center;
+  }
+
+  .curology-testimonials__highlight-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .curology-testimonials__highlight-icon svg {
+    width: 24px;
+    height: 24px;
+    display: block;
+  }
+
+  .curology-testimonials__highlight-text {
+    font-family: var(--font-body--family), sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    color: #1D1D44;
+    letter-spacing: 0;
+  }
+
+  .curology-testimonials__card-product {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+    padding: 12px 16px;
+    background-color: #F1EFFF;
+    border-radius: 0 0 8px 8px;
+  }
+
+  .curology-testimonials__product-img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+    display: block;
+    flex-shrink: 0;
+  }
+
+  .curology-testimonials__product-img-placeholder {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px 8px 0 0;
+    background-color: #D2CCFF;
+    flex-shrink: 0;
+  }
+
+  .curology-testimonials__product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .curology-testimonials__product-title-row {
+    display: flex;
+    flex-direction: row;
+    gap: 2px;
+    align-items: baseline;
+  }
+
+  .curology-testimonials__product-title {
+    font-family: var(--font-heading--family), sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 18px;
+    color: #1D1D44;
+    letter-spacing: 0;
+  }
+
+  .curology-testimonials__product-rx {
+    font-family: var(--font-heading--family), sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 14px;
+    color: #1D1D44;
+    letter-spacing: 0;
+    vertical-align: super;
+  }
+
+  .curology-testimonials__product-link {
+    font-family: var(--font-body--family), sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #1D1D44;
+    letter-spacing: 0;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .curology-testimonials__footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1408px;
+  }
+
+  .curology-testimonials__legal {
+    font-family: var(--font-body--family), sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #1D1D44;
+    margin: 0;
+    letter-spacing: 0;
+  }
+
+  .curology-testimonials__arrows-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    flex-grow: 1;
+  }
+
+  .curology-testimonials__arrows {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .curology-testimonials__arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    padding: 8px;
+    background-color: #FFFFFF;
+    border: 1px solid #1D1D44;
+    cursor: pointer;
+    transform: rotate(3.1deg);
+  }
+
+  .curology-testimonials__arrow svg {
+    width: 16px;
+    height: 16px;
+    display: block;
+  }
+
+  .curology-testimonials__arrow:focus-visible {
+    outline: 2px solid #1D1D44;
+    outline-offset: 2px;
+  }
+
+  /* Mobile */
+  @media screen and (max-width: 960px) {
+    .curology-testimonials {
+      padding: 32px 24px;
+      gap: 24px;
+    }
+
+    .curology-testimonials__title-row {
+      flex-wrap: wrap;
+    }
+
+    .curology-testimonials__heading {
+      font-size: 28px;
+      line-height: 36px;
+    }
+
+    .curology-testimonials__cta {
+      width: 100%;
+    }
+
+    .curology-testimonials__track {
+      gap: 16px;
+      scroll-snap-type: x mandatory;
+      padding-inline: 0 16px;
+    }
+
+    .curology-testimonials__card {
+      width: 260px;
+      scroll-snap-align: start;
+    }
+
+    .curology-testimonials__card-images {
+      height: 170px;
+    }
+
+    .curology-testimonials__card-before {
+      height: 170px;
+    }
+
+    .curology-testimonials__card-after {
+      height: 170px;
+    }
+
+    .curology-testimonials__card-quote {
+      font-size: 16px;
+      line-height: 22px;
+    }
+
+    .curology-testimonials__arrows {
+      display: none;
+    }
+
+    .curology-testimonials__footer {
+      justify-content: flex-start;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .curology-testimonials__track {
+      scroll-behavior: auto;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:names.curology_testimonials",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#BDB4FF"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Testimonials"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Real results, real glow — 95% saw improvement in 12 weeks"
+    },
+    {
+      "type": "text",
+      "id": "ratings_text",
+      "label": "Ratings text",
+      "default": "Over 9,000 5 star reviews"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Get started"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "text",
+      "id": "legal_text",
+      "label": "Legal text",
+      "default": "*Results may vary"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 64,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 64,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "nav-tab",
+      "name": "Navigation Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Acne"
+        },
+        {
+          "type": "checkbox",
+          "id": "is_selected",
+          "label": "Selected",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "testimonial-card",
+      "name": "Testimonial Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "before_image",
+          "label": "Before image"
+        },
+        {
+          "type": "text",
+          "id": "before_label",
+          "label": "Before label",
+          "default": "Day 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "after_image",
+          "label": "After image"
+        },
+        {
+          "type": "text",
+          "id": "after_label",
+          "label": "After label",
+          "default": "After 6 weeks"
+        },
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote",
+          "default": "\"I've struggled with my skin for 10 years, and I have literally tried everything with no success.\""
+        },
+        {
+          "type": "text",
+          "id": "user_info",
+          "label": "User info",
+          "default": "Briana  |  22 years old  |  Maryland"
+        },
+        {
+          "type": "text",
+          "id": "skin_type",
+          "label": "Skin type",
+          "default": "Skin type: Combination"
+        },
+        {
+          "type": "select",
+          "id": "highlight_1_icon",
+          "label": "Highlight 1 icon",
+          "default": "acne",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "acne", "label": "Acne" },
+            { "value": "clogged-pores", "label": "Clogged pores" },
+            { "value": "texture", "label": "Skin texture" },
+            { "value": "rosacea", "label": "Rosacea" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "highlight_1_text",
+          "label": "Highlight 1 text",
+          "default": "Acne"
+        },
+        {
+          "type": "select",
+          "id": "highlight_2_icon",
+          "label": "Highlight 2 icon",
+          "default": "clogged-pores",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "acne", "label": "Acne" },
+            { "value": "clogged-pores", "label": "Clogged pores" },
+            { "value": "texture", "label": "Skin texture" },
+            { "value": "rosacea", "label": "Rosacea" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "highlight_2_text",
+          "label": "Highlight 2 text",
+          "default": "Clogged pores"
+        },
+        {
+          "type": "image_picker",
+          "id": "product_image",
+          "label": "Product image"
+        },
+        {
+          "type": "text",
+          "id": "product_title",
+          "label": "Product title",
+          "default": "Custom Formula"
+        },
+        {
+          "type": "text",
+          "id": "product_rx_label",
+          "label": "Product Rx label",
+          "default": "Rx"
+        },
+        {
+          "type": "text",
+          "id": "product_link_text",
+          "label": "Product link text",
+          "default": "Learn more"
+        },
+        {
+          "type": "url",
+          "id": "product_link_url",
+          "label": "Product link URL"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 15,
+  "presets": [
+    {
+      "name": "t:names.curology_testimonials"
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  }
+}
+{% endschema %}
